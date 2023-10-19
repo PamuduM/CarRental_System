@@ -1,0 +1,1779 @@
+/**
+ * @author : Ashan Sandeep
+ * @since : 0.1.0
+ **/
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+
+/* Apply Poppins font family to all the html elements */
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+* {
+    padding: 0;
+    outline: none;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+/**::selection{
+    color: white;
+    background: #7461E2;
+}*/
+
+/*====================== CSS Variables ======================*/
+:root {
+    --font-regular: 400;
+    --font-semi-bold: 600;
+}
+
+/*====================== Customized Scroll bar ======================*/
+::-webkit-scrollbar {
+    width: 8px;
+    /*background: #A8A8A8;*/
+    background: #2f2b2b;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #7461E2;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    background: transparent;
+}
+
+/*====================== Header Section ======================*/
+header {
+    /*border: 3px solid black;
+    background-color: #fafaff;
+    color: black;*/
+
+    background-color: #151414;
+    color: black;
+    color: white !important;
+}
+
+#optionList > li > a {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+#optionList > li > a:hover {
+    color: #7461E2;
+}
+
+#main-h2 > a:first-child > img:nth-child(1) {
+    /*width: 70px;
+    margin-right: 1px;
+    height: 70px;
+    position: relative !important;
+    bottom: 7px;*/
+
+    width: 88px;
+    margin-right: 1px;
+    height: 73px;
+    position: relative !important;
+    bottom: 7px;
+}
+
+#optionList > li > a::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 5px;
+    background-color: #7461E2;
+    border-radius: 26%;
+    transition: width .3s;
+}
+
+#optionList > li > a:hover::after {
+    width: 43%;
+    transition: width .3s;
+}
+
+#optionList {
+    padding-left: 2px;
+    margin-top: 10px;
+}
+
+#optionList + ul {
+    gap: 15px;
+    padding-right: 3px;
+    margin-right: 15px;
+}
+
+#main-h2 span {
+    position: relative;
+    /*top: 1px;*/
+}
+
+#homeHeader > nav:first-child > div:first-child {
+    padding-left: 15px;
+}
+
+#easy {
+    margin-left: 5px;
+}
+
+header > nav {
+    padding-bottom: 6px !important;
+    padding-top: 6px !important;
+}
+
+.modal-header {
+    background: #2626a7;
+    color: white;
+}
+
+.modal-footer > button:nth-child(2) {
+    width: 75px;
+}
+
+#customer-form {
+    margin: 15px;
+}
+
+#item-form {
+    margin: 15px;
+}
+
+#updated-btn1, #updated-btn2 {
+    margin-bottom: 8px;
+}
+
+#clear-btn1, #clear-btn2 {
+    margin-bottom: 8px;
+}
+
+#delete-btn1, #delete-btn2 {
+    margin-bottom: 8px;
+}
+
+#main-h2 {
+    margin: 0;
+}
+
+#navbarTogglerDemo02 {
+    margin-top: 1px;
+}
+
+#navbarTogglerDemo02 > ul > li i {
+    padding-right: 7px;
+}
+
+#navbarTogglerDemo02 > ul > li {
+    margin-right: 2px;
+}
+
+#tblCustomer > tbody > tr {
+    cursor: pointer;
+}
+
+#tblItem > tbody > tr {
+    cursor: pointer;
+}
+
+#btnUpdateCart:hover {
+    background-color: #1a71ef !important;
+}
+
+.carousel-inner > div {
+    height: 636px;
+}
+
+#scroll_up_btn {
+    position: fixed;
+    opacity: 0.8;
+    right: 23px;
+    bottom: 19px;
+    z-index: 996;
+    background: #7461E2;
+    width: 35px;
+    height: 35px;
+    border-radius: 4px;
+    transition: all 0.4s;
+}
+
+#scroll_up_btn:hover {
+    opacity: 1.0;
+    transform: translateY(-10px);
+}
+
+#scroll_up_btn > i {
+    font-size: 19px;
+    color: #fff;
+    line-height: 0;
+    position: absolute;
+    right: 10px;
+    top: 17px;
+}
+
+#colorDiv {
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 636px;
+    position: absolute;
+    z-index: 1;
+}
+
+#easy + span {
+    color: white;
+}
+
+#optionList > li > a {
+    color: white;
+}
+
+/* ---------------------------------------------------------------------------------------- */
+
+/* ---------------------------------Customer Page -------------------------------- */
+#customerPageHeader {
+    /*height: 70px;*/
+}
+
+#customerPageHeader #optionList {
+    /*margin-top: 12px;*/
+}
+
+#main-h2 {
+    /*margin-bottom: 4px;*/
+}
+
+#customerPageHeader #optionList + ul {
+    padding-right: 12px;
+}
+
+.navbar-toggler {
+    background-color: white;
+}
+
+#customerPage_home > section:first-child {
+    padding-top: 22px;
+}
+
+#sortingSection > aside > h1 {
+    width: max-content;
+    height: max-content;
+    font-size: 16px;
+}
+
+#sortingSection > aside > div:nth-child(2) {
+    padding-bottom: 5px;
+}
+
+#sortingSection {
+    gap: 25px;
+    height: 590px;
+}
+
+#sortingSection > aside:nth-child(2) > div:nth-child(2), #sortingSection > aside:nth-child(2) > div:nth-child(3), #sortingSection > aside:nth-child(2) > div:nth-child(4), #sortingSection > aside:nth-child(2) > div:nth-child(5) {
+    padding-bottom: 5px;
+}
+
+#sortingSection > aside:nth-child(3) > div:nth-child(2), #sortingSection > aside:nth-child(3) > div:nth-child(3) {
+    padding-bottom: 5px;
+}
+
+#sortingSection > aside:nth-child(4) > div:nth-child(1) {
+    padding-bottom: 5px;
+}
+
+#sortingSection > aside:nth-child(5) {
+    row-gap: 15px;
+}
+
+#sortingSection > aside {
+    padding-left: 22px;
+}
+
+#searchCarBtnDiv, #clearCarBtnDiv {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-top: 7px;
+}
+
+#btnSearch {
+    font-size: 14px;
+}
+
+#lblPickUpDate, #lblReturnDate, #lblCarType {
+    font-size: 14.5px;
+    margin-bottom: 3px;
+}
+
+#btnClearSortings {
+    width: 95px;
+}
+
+/* ------------------------------------------------------------------------------ */
+
+/*====================== Assignments Section ======================*/
+
+.carDetails_section > div {
+    position: relative;
+    /*display: flex;
+    gap: 24px;
+    align-items: center;
+    flex-direction: column;*/
+    background: #efeffc;
+
+    /*2022-02-17 Added*/
+    width: 340px;
+    height: 405px;
+    box-shadow: -23px -23px 45px #ffffff, 28px 28px 50px rgba(13, 39, 80, 0.16);
+    border-radius: 25px;
+    transition: all 0.8s ease;
+}
+
+.carDetails_section > div > h2 {
+    margin-top: 43px;
+    font-size: 21px;
+}
+
+.carDetails_section > div > img {
+    border: 1px solid;
+    width: 88%;
+    height: 165px;
+}
+
+.carDetails_section > div:hover {
+    transition: all 0.8s ease;
+    transform: scale(0.97);
+    box-shadow: 1px 1px 54px 1px rgba(0, 0, 0, 0.22);
+    cursor: pointer;
+    /* background: #f1f1fb; */
+    background: #7461E2;
+}
+
+.cars_btn > a {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+    border-radius: 0.5rem;
+}
+
+.carDetails_section > div:hover > h2 {
+    transition: all 0.8s ease;
+    color: white;
+}
+
+.carDetails_section > div:hover .svg-wrapper {
+    visibility: visible;
+    transition: all .6s;
+}
+
+.carDetails_section > div:hover .shape1, .carDetails_section > div:hover .shape2 {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 1120;
+}
+
+.assignments_p {
+    text-align: center;
+    font-weight: 400;
+}
+
+.carDetails_section > div > div > p {
+    position: absolute;
+    top: 28px;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    height: max-content;
+    /* margin: auto; */
+    margin-left: 20px;
+    margin-right: 20px;
+    color: white;
+}
+
+.carDetails_section > div:hover .assignments_p {
+    visibility: visible;
+    transition: all .6s;
+}
+
+.carDetails_section > div:hover .cars_btn {
+    visibility: visible;
+    transition: all .6s;
+}
+
+.carDetails_section > div > div > button {
+    position: absolute;
+    top: 156px;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+    color: black;
+    text-align: center;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    background-color: gold;
+    height: 44px;
+    transition: all .6s;
+    cursor: pointer;
+    width: 125px;
+    border: 3px solid gold;
+    font-size: 15px;
+}
+
+.carDetails_section > div > div > button:hover::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: all .5s;
+    animation: clippath .8s 1 linear;
+}
+
+@keyframes clippath {
+    0%, 100% {
+        clip-path: inset(0 0 95% 0);
+    }
+
+    25% {
+        clip-path: inset(0 95% 0 0);
+        border: 3px solid #6b57d7;
+    }
+    50% {
+        clip-path: inset(95% 0 0 0);
+        border: 3px solid #6b57d7;
+    }
+    75% {
+        clip-path: inset(0 0 0 95%);
+        border: 3px solid #6b57d7;
+    }
+}
+
+.svg-wrapper {
+    position: absolute;
+    top: 52px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 273px;
+    height: 275px;
+    transition: all 2s;
+    /* background: #00000080; */
+    background: #00000094;
+}
+
+.carDetails_section > div:hover .shape1, .carDetails_section > div:hover .shape2 {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 1120;
+}
+
+.svg-wrapper, .assignments_p, .cars_btn {
+    visibility: hidden;
+    transition: visibility .6s;
+}
+
+.shape1 {
+    stroke-dashoffset: 1120;
+}
+
+.shape1, .shape2 {
+    stroke-dasharray: 1120;
+    stroke-width: 13px;
+    fill: transparent;
+    /* stroke: #19f6e8; */
+    /* stroke: #7461e2; */
+    stroke: #edf1fa;
+    border-bottom: 5px solid black;
+    transition-timing-function: linear;
+    transition: stroke-dashoffset 2.5s, stroke-dasharray 2.5s;
+}
+
+.carDetails_section > div:hover .cars_btn {
+    visibility: visible;
+    transition: all .6s;
+}
+
+.shape1 {
+    stroke-dashoffset: 1120;
+}
+
+.carDetails_section {
+    gap: 55px;
+    padding-top: 30px;
+    padding-bottom: 45px;
+}
+
+.carDetails_section > div {
+    justify-content: center;
+    padding: 0;
+}
+
+.carDetails_section > div > div:nth-child(2) {
+    padding: 0;
+}
+
+.carDetails_section > div > div:nth-child(2) > img {
+    width: 100%;
+    height: 180px;
+    /* background-position: center; */
+    /* background-size: cover; */
+    object-fit: cover;
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
+}
+
+.carDetails_section > div > div:nth-child(3) {
+    text-align: center;
+}
+
+.carDetails_section > div > div:nth-child(3) > h2 {
+    font-size: 18px;
+}
+
+.carDetails_section > div > div:nth-child(4) {
+    text-align: center;
+    justify-content: space-evenly;
+}
+
+.carDetails_section > div > div:nth-child(4) > h2 {
+    font-size: 15px;
+    justify-content: center;
+}
+
+.carDetails_section > div > div:nth-child(5) {
+    padding-top: 20px;
+    text-align: center;
+    font-size: 15px;
+    justify-content: center;
+}
+
+.carDetails_section > div > div:nth-child(5) > h2 {
+    font-size: 15px;
+    justify-content: center;
+    gap: 0;
+}
+
+.carDetails_section > div > div:nth-child(5) > h2 > span {
+    width: max-content;
+    height: max-content;
+}
+
+.carDetails_section > div > div:nth-child(5) > h2 > span:nth-child(2) {
+    position: relative;
+    bottom: 6px;
+}
+
+#sortingSection {
+    padding-left: 18px;
+}
+
+/* ------------------------------------ Booking --------------------------------------*/
+#carImagesCarousel .carousel-inner > div {
+    height: max-content;
+}
+
+#carImagesCarousel .carousel-inner img {
+    /*height: 310px;*/
+}
+
+#carImagesCarousel .carousel-inner .carousel-item {
+    height: 310px;
+}
+
+#carImagesCarousel .carousel-inner > .carousel-item > img {
+    margin: auto;
+}
+
+#carImagesCarousel .carousel-inner > .carousel-item:nth-child(2) > img {
+    /*height: 210px;*/
+    width: 380px !important;
+}
+
+#carImagesCarousel .carousel-inner > .carousel-item:nth-child(1) > img {
+    height: 280px;
+    width: 500px !important;
+}
+
+#carImagesCarousel .carousel-inner > .carousel-item:nth-child(3) > img {
+    width: 370px !important;
+    object-fit: cover;
+}
+
+#carImagesCarousel .carousel-inner > .carousel-item:nth-child(4) > img {
+    width: 379px !important;
+    height: 266px;
+}
+
+#carImagesAside {
+    /*background-color: black;*/
+}
+
+#car_brand {
+    font-size: 22px;
+}
+
+#carDetailsAside > h2 {
+    font-size: 16px;
+}
+
+#car_brand {
+    height: max-content;
+    width: max-content;
+    margin-top: 15px;
+}
+
+#carDetailsAside {
+    /*padding: 6px 0 28px 0;*/
+    border-radius: 16px;
+}
+
+#carBookingMain > section:first-child > section:nth-child(2) > section:first-child {
+    height: 260px !important;
+    border-radius: 20px;
+}
+
+#carBookingMain > section:first-child > section:nth-child(2) > section:first-child > h3 {
+    font-size: 19px !important;
+}
+
+#tblCarDetails {
+    font-size: 14px;
+}
+
+#tblCarDetails > thead > tr:first-child {
+    font-size: 13px;
+}
+
+#tblCarDetails > thead > tr:first-child > th {
+    text-align: center;
+    /*padding: 0 0 16px;*/
+}
+
+#tblCarDetails > thead > tr:first-child > th:nth-child(5), #tblCarDetails > thead > tr:first-child > th:nth-child(6), #tblCarDetails > thead > tr:first-child > th:nth-child(7), #tblCarDetails > thead > tr:first-child > th:nth-child(8), #tblCarDetails > thead > tr:first-child > th:nth-child(9), #tblCarDetails > thead > tr:first-child > th:nth-child(10) {
+    padding: 0 0 8px;
+}
+
+#tblCarDetails > thead {
+    height: 55px;
+}
+
+#regNo {
+    width: 90px;
+}
+
+tbody {
+    text-align: center;
+}
+
+#carBookingMain > section:first-child {
+    margin-top: 20px;
+    padding-top: 16px;
+    gap: 15px;
+}
+
+#carBookingMain > section:nth-child(2) {
+    /*padding-top: 16px;
+    margin-top: 22px;*/
+}
+
+#carBookingMain > section:first-child > section:first-child {
+    gap: 2px;
+}
+
+#customerDetailsHeader, #rentDetailsHeader {
+    font-size: 19px !important;
+}
+
+#customerDetailsSection {
+    margin-bottom: 0 !important;
+    margin-top: 0 !important;
+    height: max-content;
+}
+
+#customerDetailsSection, #rentDetailsSection {
+    font-size: 14px;
+}
+
+#customerDetailsSection input {
+    font-size: 14px;
+}
+
+#btnClearCusData {
+    font-size: 14px;
+    margin-top: 16px;
+}
+
+#carBookingMain > section:nth-child(2) {
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
+
+#btnSubmitRent, #btnCancelRent {
+    width: max-content;
+    height: max-content;
+    font-weight: bold;
+    padding: 10px;
+    font-size: 14px;
+}
+
+#btnCancelRent {
+    padding-left: 13px;
+    padding-right: 13px;
+}
+
+#driverAcceptanceField {
+    margin-right: 3px;
+}
+
+#carBookingMain {
+    padding-bottom: 33px;
+}
+
+#carBookingMain > section:nth-child(2) {
+    margin-top: 20px;
+    padding-bottom: 30px;
+    border-radius: 15px;
+}
+
+#carImagesCarousel {
+    top: 52px;
+}
+
+#carBookingPageHeader #easy {
+    /*top: -1px;*/
+}
+
+/* -----------------------------------------------My Bookings AND Booking Status ---------------------------------------------------------*/
+#customerPage_bookings > section:first-child, #customerPage_rentStatus > section:first-child {
+    /*padding-top: 43px;*/
+}
+
+#btnSearchBookings, #btnSearchRentStatus {
+    padding: 10px;
+    font-size: 14px;
+    position: relative;
+    bottom: 4px;
+}
+
+#tblBookingDetails, #tblRentDetailsStatus {
+    text-align: center;
+    font-size: 15px;
+}
+
+#customerPage_bookings > section:nth-child(2) > section:first-child, #customerPage_rentStatus > section:nth-child(2) > section:first-child {
+    padding-right: 25px;
+    padding-left: 25px;
+}
+
+#customerPage_myProfile > section:first-child {
+    padding-top: 20px;
+}
+
+#myProfileHeader {
+    font-size: 30px;
+}
+
+#customerPage_myProfile > section:first-child > div:first-child {
+    padding-left: 23px;
+}
+
+#customerPage_myProfile form {
+    border-radius: 16px;
+    padding: 16px 20px 45px;
+}
+
+#customerNicImage, #customerLicenseImage {
+    height: 319px;
+}
+
+#customerPage_myProfile > section:nth-child(2) {
+    padding-bottom: 42px;
+}
+
+#myProfileHeader > i {
+    position: relative;
+    top: -1px;
+    margin-left: 5px;
+    font-size: 20px;
+}
+
+#tblBookingDetails tbody {
+    font-size: 14px;
+}
+
+.btnOptionCancelRent {
+    padding: 4px 6px;
+    font-size: 14px;
+}
+
+/* ------------------------------------------Driver Page ---------------------------------------------*/
+#driverSchedule_section > section:first-child {
+    padding-top: 20px;
+}
+
+#myProfileHeader {
+    font-size: 30px;
+}
+
+#driverSchedule_section > section:first-child > div:first-child {
+    padding-left: 23px;
+}
+
+#driverSchedule_section form {
+    border-radius: 16px;
+    padding: 16px 20px 45px;
+}
+
+#customerNicImage, #customerLicenseImage {
+    height: 319px;
+}
+
+#driverSchedule_section > section:nth-child(2) {
+    padding-bottom: 42px;
+}
+
+#driverSchedule_section > section:nth-child(2) {
+    margin-top: 15px;
+}
+
+#tblDriverSchedule {
+    font-size: 15px;
+    text-align: center;
+}
+
+/* ================================================ */
+
+#driverInformation_section > section:first-child {
+    padding-top: 20px;
+}
+
+#driverInformationHeader {
+    font-size: 25px;
+}
+
+#driverInformation_section > section:first-child > div:first-child {
+    padding-left: 23px;
+}
+
+#driverInformation_section form {
+    border-radius: 16px;
+    padding: 6px 20px 45px;
+}
+
+#customerNicImage, #driverLicenseImage {
+    height: 319px;
+}
+
+#driverInformation_section > section:nth-child(2) {
+    padding-bottom: 42px;
+}
+
+#driverInformationHeader > i {
+    position: relative;
+    top: 0;
+    margin-left: 5px;
+    font-size: 20px;
+}
+
+/* ===================================================================================================== */
+
+/* --------------------------------------------Admin Page ----------------------------------------------*/
+
+#header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 280px;
+    transition: all ease-in-out 0.5s;
+    z-index: 9997;
+    transition: all 0.5s;
+    padding: 0 15px;
+    background: #040b14;
+    overflow-y: auto;
+}
+
+#header .profile img {
+    margin: 15px auto;
+    display: block;
+    width: 120px;
+    border: 8px solid #2c2f3f;
+}
+
+#header .profile h1 {
+    font-size: 24px;
+    margin: 0;
+    padding: 0;
+    font-weight: 600;
+    -moz-text-align-last: center;
+    text-align-last: center;
+    font-family: "Poppins", sans-serif;
+}
+
+#header .profile h1 a,
+#header .profile h1 a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+#header .profile .social-links a {
+    font-size: 18px;
+    display: inline-block;
+    background: #212431;
+    color: #fff;
+    line-height: 1;
+    padding: 8px 0;
+    margin-right: 4px;
+    border-radius: 50%;
+    text-align: center;
+    width: 36px;
+    height: 36px;
+    transition: 0.3s;
+}
+
+#header .profile .social-links a:hover {
+    background: #149ddd;
+    color: #fff;
+    text-decoration: none;
+}
+
+#main {
+    margin-left: 300px;
+}
+
+@media (max-width: 975px) {
+    #header {
+        left: -300px;
+    }
+
+    #main {
+        margin-left: 0;
+    }
+}
+
+.nav-menu {
+    padding: 10px 0 0 0;
+}
+
+.nav-menu * {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.nav-menu > ul > li {
+    position: relative;
+    white-space: nowrap;
+}
+
+.nav-menu a,
+.nav-menu a:focus {
+    display: flex;
+    align-items: center;
+    color: #a8a9b4;
+    padding: 12px 15px;
+    margin-bottom: 8px;
+    transition: 0.3s;
+    font-size: 15px;
+}
+
+.nav-menu a i,
+.nav-menu a:focus i {
+    font-size: 18px;
+    padding-right: 10px;
+    color: #6f7180;
+}
+
+.nav-menu a:hover,
+.nav-menu .active,
+.nav-menu .active:focus,
+.nav-menu li:hover > a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.nav-menu a:hover i,
+.nav-menu .active i,
+.nav-menu .active:focus i,
+.nav-menu li:hover > a i {
+    color: #149ddd;
+}
+
+/* Mobile Navigation */
+.mobile-nav-toggle {
+    position: fixed;
+    right: 15px;
+    top: 15px;
+    z-index: 9998;
+    border: 0;
+    font-size: 24px;
+    transition: all 0.4s;
+    outline: none !important;
+    background-color: #149ddd;
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 0;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.mobile-nav-active {
+    overflow: hidden;
+}
+
+.mobile-nav-active #header {
+    left: 0;
+}
+
+.profile {
+    margin-top: 12px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.profile > h5 {
+    font-size: 18px;
+    margin: 22px 0 0;
+}
+
+#navbar > ul:first-child > li > a {
+    padding-bottom: 8px;
+}
+
+#txtAdminPanel > i {
+    position: relative;
+    /* padding-right: 0px; */
+    top: 4px;
+    font-size: 23px;
+}
+
+.profile > hr {
+    margin-bottom: 0;
+    margin-top: 12px;
+}
+
+/* ----------------------------------Admin Panel ------------------------------------*/
+#adminDashboard {
+    margin-left: 288px;
+    padding: 35px;
+    gap: 33px;
+    justify-content: space-evenly;
+}
+
+.admin-sections {
+    margin-left: 268px;
+    padding: 35px;
+}
+
+@media (max-width: 930px) {
+    #adminDashboard {
+        margin-left: 0;
+    }
+}
+
+#adminDashboard > div {
+    position: relative;
+    background: #efeffc;
+    width: 280px;
+    height: 170px;
+    box-shadow: -23px -23px 45px #ffffff, 28px 28px 50px rgb(13 39 80 / 16%);
+    border-radius: 25px;
+    transition: all 0.8s ease;
+    flex-direction: column;
+    padding-top: 25px;
+    gap: 8px;
+}
+
+#adminDashboard > div:hover {
+    transition: all 0.8s ease;
+    transform: scale(0.97);
+    box-shadow: 1px 1px 54px 1px rgb(0 0 0 / 22%);
+    cursor: pointer;
+}
+
+#adminDashboard > div > h1 {
+    text-align: center;
+    font-size: 22px;
+    text-shadow: 0 4px 4px rgb(0 0 0 / 25%);
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+#adminDashboard > div > span {
+    text-align: center;
+    font-size: 40px;
+}
+
+@media (max-width: 930px) {
+    .admin-sections {
+        margin-left: 0;
+    }
+}
+
+.admin-sections > section:first-child > div:first-child > h1 {
+    font-size: 23px;
+}
+
+.admin-sections > section:first-child > div:first-child > h1 > i {
+    top: 0;
+}
+
+.statusBadge {
+    padding: 6px 10px;
+    font-size: 13px;
+}
+
+.btnGroups {
+    gap: 10px;
+}
+
+.btnGroups > button {
+    border-radius: inherit !important;
+}
+
+#tblManageRentalRequests {
+    text-align: center;
+    font-size: 15px;
+}
+
+#tblManageRentalRequests > thead > tr > th {
+    color: white;
+}
+
+.admin-sections > section:first-child {
+    border-radius: 15px;
+}
+
+#manageVehicleHeader {
+    font-size: 30px;
+}
+
+#manageVehicleHeader > i {
+    position: relative;
+    top: -1px;
+    margin-left: 5px;
+    font-size: 20px;
+}
+
+#manageVehicle_section {
+    margin-left: 268px;
+    padding: 26px;
+}
+
+@media (max-width: 930px) {
+    #manageVehicle_section {
+        margin-left: 0;
+    }
+}
+
+#manageVehicle_section > section:first-child > div:first-child > h1 {
+    font-size: 23px;
+}
+
+#manageVehicle_section > section:first-child > div:first-child > h1 > i {
+    top: 0;
+}
+
+#manageVehicle_section > section:first-child {
+    border-radius: 15px;
+}
+
+#manageVehicle_section > section:nth-child(2) {
+    margin-top: 20px;
+    gap: 32px;
+}
+
+#manageVehicleCarousel img {
+    height: 372px;
+    object-fit: cover;
+}
+
+#manageVehicleCarousel .carousel-inner {
+    height: 372px;
+}
+
+.carousel-control-prev > span:first-child, .carousel-control-next > span:first-child {
+    background-color: black;
+}
+
+.carousel-indicators > button {
+    background-color: black !important;
+}
+
+#manageCarForm {
+    font-size: 15px;
+}
+
+.btnGroup {
+    margin-top: 28px;
+    gap: 20px;
+}
+
+.btnGroup > button:first-child {
+    border-top-right-radius: inherit !important;
+    border-bottom-right-radius: inherit !important;
+}
+
+.btnGroup > button:nth-child(2) {
+    border-radius: inherit !important;
+}
+
+.btnGroup > button:nth-child(3) {
+    border-radius: inherit !important;
+}
+
+.btnGroup > button:nth-child(4) {
+    border-top-left-radius: inherit !important;
+    border-bottom-left-radius: inherit !important;
+}
+
+#manageVehicle_section > section:nth-child(3) {
+    margin-top: 10px;
+}
+
+#tblManageVehicle {
+    text-align: center;
+    font-size: 15px;
+}
+
+#txtUploadCarImages {
+    margin-top: 15px;
+}
+
+#manageVehicleCarousel .carousel-inner, #manageVehicleCarousel img {
+    height: 304px;
+}
+
+#manageBookingsHeader {
+    font-size: 23px;
+}
+
+#manageBookingsHeader > i {
+    position: relative;
+    top: -1px;
+    margin-left: 5px;
+    font-size: 20px;
+}
+
+#manageBookingsForm {
+    font-size: 15px;
+}
+
+#btnGroupManageBookings {
+    margin-top: 28px;
+}
+
+@media (max-width: 320px) {
+    #manageBookings_section {
+        padding: 10px;
+    }
+}
+
+#tblManageBookings {
+    text-align: center;
+    font-size: 15px;
+}
+
+#manageCustomerHeader {
+    font-size: 23px;
+}
+
+#manageCustomerHeader > i {
+    position: relative;
+    top: -1px;
+    margin-left: 5px;
+    font-size: 20px;
+}
+
+#manageCustomerForm {
+    font-size: 15px;
+}
+
+#tblManageCustomer {
+    text-align: center;
+    font-size: 15px;
+}
+
+@media (max-width: 426px) {
+    #manageCustomer_section {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 352px) {
+    #btnGroupManageCustomer > button:first-child {
+        padding-left: 3px;
+        padding-right: 3px;
+    }
+
+    #btnGroupManageCustomer > button:nth-child(2) {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+
+#manageDriverHeader {
+    font-size: 23px;
+}
+
+#manageDriverHeader > i {
+    position: relative;
+    top: -1px;
+    margin-left: 5px;
+    font-size: 20px;
+}
+
+@media (max-width: 426px) {
+    #manageDriver_section {
+        padding: 0;
+    }
+}
+
+#tblManageDriver {
+    text-align: center;
+    font-size: 15px;
+}
+
+@media (max-width: 430px) {
+    #txtDriverLicenseImageUploader {
+        width: 258px !important;
+    }
+
+    #btnGroupManageDriver {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 530px) {
+    #btnGroupManageDriver {
+        flex-direction: column;
+    }
+}
+
+#viewDriverScheduleHeader {
+    font-size: 23px;
+}
+
+#viewDriverScheduleHeader > i {
+    position: relative;
+    top: -1px;
+    margin-left: 5px;
+    font-size: 20px;
+}
+
+#tblViewDriverSchedule {
+    text-align: center;
+    font-size: 15px;
+}
+
+@media (max-width: 900px) {
+    #viewDriverSchedule_section {
+        padding: 0;
+    }
+}
+
+#viewCarScheduleHeader {
+    font-size: 23px;
+}
+
+#viewCarScheduleHeader > i {
+    position: relative;
+    top: -1px;
+    margin-left: 5px;
+    font-size: 20px;
+}
+
+@media (max-width: 350px) {
+    #viewCarSchedule_section {
+        padding: 15px;
+    }
+}
+
+#tblViewRentedCarSchedule, #tblViewAvailableCarSchedule {
+    text-align: center;
+    font-size: 15px;
+}
+
+#adminProfileHeader {
+    font-size: 23px;
+}
+
+#adminProfileHeader > i {
+    position: relative;
+    top: -1px;
+    margin-left: 5px;
+    font-size: 20px;
+}
+
+#rentDetailsHeader {
+    font-size: 23px;
+}
+
+#rentDetailsHeader > i {
+    position: relative;
+    top: -1px;
+    margin-left: 5px;
+    font-size: 20px;
+}
+
+@media (max-width: 352px) {
+    #btnGroupManageRentDetails > button:first-child {
+        padding-left: 3px;
+        padding-right: 3px;
+    }
+
+    #btnGroupManageRentDetails > button:nth-child(2) {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    #btnGroupManageRentDetails > button:nth-child(3) {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+
+@media (max-width: 430px) {
+    #manageRentDetails_section {
+        padding: 0;
+    }
+}
+
+#tblManageRentDetails {
+    text-align: center;
+    font-size: 15px;
+}
+
+#managePaymentsHeader {
+    font-size: 19px !important;
+}
+
+#managePaymentsHeader > i {
+    position: relative;
+    top: -1px;
+    margin-left: 5px;
+    font-size: 20px;
+}
+
+@media (max-width: 352px) {
+    #btnGroupManagePayments > button:first-child {
+        padding-left: 3px;
+        padding-right: 3px;
+    }
+
+    #btnGroupManagePayments > button:nth-child(2) {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    #btnGroupManagePayments > button:nth-child(3) {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+
+#tblManagePayments {
+    text-align: center;
+    font-size: 15px;
+}
+
+#btnProfile {
+    position: relative;
+}
+
+#btnProfile > a {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+    border-radius: 0.5rem;
+}
+
+.svg-wrapper {
+    padding: 0;
+}
+
+.brand {
+
+}
+
+.color {
+    top: 58px !important;
+    margin-bottom: 5px;
+}
+
+.freeKmForDay {
+    top: 88px !important;
+    margin-bottom: 5px;
+}
+
+.freeKmForMonth {
+    top: 118px !important;
+    margin-bottom: 5px;
+}
+
+.pricePerExtraKm {
+    top: 148px !important;
+    margin-bottom: 5px;
+}
+
+#carsCollection {
+    justify-content: center;
+    padding-top: 20px;
+}
+
+#homePage > section:nth-child(3) {
+    margin-top: 38px;
+}
+
+#homePage > section:nth-child(3) > div > h1 {
+    font-size: 36px;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-shadow: 0 4px 4px rgb(0 0 0 / 25%);
+    position: relative;
+    padding-bottom: 15px;
+}
+
+#homePage > section:nth-child(3) > div > h1::before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 300px;
+    height: 1px;
+    background: #ddd;
+    bottom: 1px;
+    left: calc(50% - 149px);
+}
+
+#homePage > section:nth-child(3) > div > h1::after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 75px;
+    height: 4px;
+    background: #7461E2;
+    bottom: 0;
+    left: calc(50% - 35px);
+}
+
+#carsCollection > section:nth-child(1) > div > h2, #carsCollection > section:nth-child(3) > div > h2, #carsCollection > section:nth-child(5) > div > h2 {
+    font-weight: 500;
+    font-size: 25px;
+    color: hsl(250, 8%, 45%);
+}
+
+#carsCollection > section:nth-child(1), #carsCollection > section:nth-child(3), #carsCollection > section:nth-child(5) {
+    margin-top: 30px;
+}
+
+#homePage > section {
+    margin-left: 0;
+}
+
+/*====================== Footer Section ======================*/
+
+body > footer {
+    background: #16168b;
+    color: white;
+    position: relative;
+}
+
+body > footer > nav:first-child > menu i {
+    color: white;
+    font-size: 36px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+footer > aside {
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+footer > aside > h1:first-child {
+    font-size: 36px;
+    font-weight: 600;
+}
+
+footer > aside > h1:last-of-type {
+    font-size: 23px;
+    font-weight: 600;
+}
+
+footer > aside > h5 {
+    font-size: 15px;
+    font-weight: 400;
+}
+
+footer > div:last-child {
+    text-align: center;
+    position: relative;
+}
+
+footer > div:last-child > small {
+    font-size: 13px;
+}
+
+footer > div:last-child > i {
+    font-size: 13px;
+    position: relative;
+    top: 0.7px;
+}
+
+footer > nav > menu > li i:hover {
+    transition: all 0.4s;
+    transform: translateY(-10px);
+}
+
+footer > nav {
+    margin-top: 33px !important;
+}
+
+footer > aside {
+    padding-left: 58px !important;
+    margin-bottom: 38px;
+    margin-top: 25px !important;
+}
+
+footer > div {
+    margin-bottom: 19px;
+}
+
+@media (max-width: 768px) {
+    footer > nav > menu {
+        gap: 25px;
+    }
+}
+
+@media (max-width: 768px) {
+    footer > aside {
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+        text-align: center;
+    }
+}
+
+@media (max-width: 350px) {
+    #rentCarImage {
+        display: none;
+    }
+
+    #s {
+        justify-content: center;
+        gap: 10px;
+    }
+}
+
+#homePage {
+    margin-top: 85px;
+}
+
+@media (max-width: 376px) {
+    #homePage {
+        margin-top: 125px;
+    }
+}
+
+@media (max-width: 321px) {
+    #homePage {
+        margin-top: 55px;
+    }
+}
+
+#loginFormHeader, #registerFormHeader {
+    font-size: 25px;
+}
+
+@media (max-width: 321px) {
+    #rdbRememberMe {
+        margin-bottom: 17px;
+    }
+}
+
+@media (max-width: 426px) {
+    #btnResetPassword {
+        margin-bottom: 18px;
+    }
+}
+
+#btnRegister_registerForm {
+    padding: 8px 43px;
+    font-size: 17px;
+}
+
+#btnCancel_registerForm {
+    padding: 8px 25px;
+    font-size: 17px;
+}
+
+#btnRegisterNow {
+    background: none;
+    color: #0d6efd;
+    border: navajowhite;
+    padding: 0;
+}
+
+@media (max-width: 1025px) {
+    #sortingSection {
+        margin-top: 40px;
+    }
+}
+
+@media (max-width: 321px) {
+    .svg-wrapper {
+        width: 92%;
+    }
+
+    .svg-wrapper > p:nth-child(2) {
+        top: 12px !important;
+    }
+
+    .svg-wrapper > p:nth-child(3) {
+        top: 37px !important;
+    }
+
+    .svg-wrapper > p:nth-child(4) {
+        top: 61px !important;
+    }
+
+    .svg-wrapper > p:nth-child(5) {
+        top: 102px !important;
+    }
+
+    .svg-wrapper > button {
+        top: 175px !important;
+    }
+}
+
+@media (min-width: 975px) {
+    #header {
+        left: 0 !important;
+    }
+}
+
+tbody {
+    cursor: pointer;
+}
+
+.svg-wrapper + div {
+    margin-top: 2px;
+}
