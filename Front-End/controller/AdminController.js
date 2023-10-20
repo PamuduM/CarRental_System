@@ -611,3 +611,209 @@ $("#btnUpdateCar").on('click', function () {
         }
     })
 });
+
+
+// Delete Car
+$("#btnDeleteCar").on('click', function () {
+    let carId = $("#txtCarID").val();
+    $.ajax({
+        url: baseUrl + "car?carId=" + carId,
+        method: "delete",
+        dataType: "json",
+        success: function (resp) {
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: resp.message,
+                showConfirmButton: false,
+                timer: 1500
+            })
+            loadAllCars();
+            // deleteCarImages(carId);
+        },
+        error: function (error) {
+            alert(JSON.parse(error.responseText).message);
+        }
+    });
+});
+
+function deleteCarImages(carId) {
+    $.ajax({
+        url: baseUrl + "car/deleteCarImages/" + carId,
+        method: "delete",
+        dataType: "json",
+        success: function (res) {
+            alert(res.message);
+        },
+        error: function (error) {
+            alert(JSON.parse(error.responseText).message);
+        }
+    })
+}
+
+/*------------------- Manage Rental Requests -------------------*/
+function loadAllRentalRequests() {
+    $("#tblManageRentalRequests>tbody").empty();
+
+    $.ajax({
+        url: baseUrl + "rent/ManageRentalRequests/Pending",
+        method: "get",
+        success: function (resp) {
+            if (resp.data != null) {
+                for (let rent of resp.data) {
+                    console.log(rent)
+                    var xr = rent.pickUpDate;
+                    var startDate = xr[0] + "-" + xr[1] + "-" + xr[2];
+
+                    var xr1 = rent.pickUpTime;
+                    var startTime;
+                    if (xr1[1] < 10) {
+                        startTime = xr1[0] + ":0" + xr1[1];
+                    }
+
+                    if (xr1[0] >= 12) {
+                        startTime += " PM";
+                    } else {
+                        startTime += " AM";
+                    }
+
+                    //---------------------------------
+
+                    var yr = rent.returnDate;
+                    var endDate = yr[0] + "-" + yr[1] + "-" + yr[2];
+
+                    var yr1 = rent.returnTime;
+                    var returnTime;
+                    if (yr1[1] < 10) {
+                        returnTime = yr1[0] + ":0" + yr1[1];
+                    }
+
+                    if (yr1[0] >= 12) {
+                        returnTime += " PM";
+                    } else {
+                        returnTime += " AM";
+                    }
+
+                    for (let i = 0; i < rent.rentDetail.length; i++) {
+                        var tag = '<span class="badge rounded-5 text-bg-primary statusBadge" style="font-size: 13px;">Pending</span>';
+
+                        var btnGroupDiv = '<div class="btn-group btnGroups" role="group" aria-label="Basic mixed styles example">' +
+                            '<button type="button" class="btn btn-success btnAccept">Accept</button>' +
+                            '<button type="button" class="btn btn-danger btnDeny">Deny</button>' +
+                            '</div>';
+
+                        $("#tblManageRentalRequests>tbody").append(`<tr><td>${rent.rentId}</td><td>${rent.rentDetail[i].carId}</td><td>${startDate}</td><td>${startTime}</td><td>${endDate}</td><td>${returnTime}</td><td>${rent.location}</td><td>${"Paid"}</td><td>${rent.customer.customerId}</td><td>${rent.customer.name}</td><td>${rent.rentDetail[i].driver.driverId}</td><td>${tag}</td><td>${btnGroupDiv}</td></tr>`);
+                    }
+                }
+                bindRowClickEventsForManageRentalRequestsSection();
+            }
+        }
+    });
+}
+
+function bindRowClickEventsForManageRentalRequestsSection() {
+    $(".btnAccept").on('click', function () {
+        console.log($(this).parent().parent().parent().children(":eq(0)").text()); //rent ID
+        let rentID = $(this).parent().parent().parent().children(":eq(0)").text();
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "Do You want to Accept This Rental Request..?",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#198754',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Accept it!',
+            cancelButtonText: 'No'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: baseUrl + "rent?rentId=" + rentID + "&" + "rentStatus=Accepted&deniedReason=" + '',
+                    method: "put",
+                    dataType: "json",
+                    success: function (res) {
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }
+                        })
+
+                        Toast.fire({
+                            icon: 'success',
+                            title: 'Successfully Accepted'
+                        })
+                        loadAllRentalRequests();
+                    },
+
+                    error: function (error) {
+                        loadAllRentalRequests();
+                        console.log(JSON.parse(error.responseText).message);
+                    }
+                });
+            }
+        })
+    });
+
+    $(".btnDeny").on('click', function () {
+        console.log($(this).parent().parent().parent().children(":eq(0)").text()); //rent ID
+        let rentID = $(this).parent().parent().parent().children(":eq(0)").text();
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "Do You want to Deny this Rental Request..?",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, Deny it!',
+            cancelButtonText: 'No'
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                const {value: deniedReason} = await Swal.fire({
+                    title: 'Enter Your Denied Reason',
+                    input: 'textarea',
+                    inputLabel: 'Your Message',
+                    inputPlaceholder: 'Enter your message here',
+                    showCancelButton: true,
+                    confirmButtonText: "Send Message",
+                    allowOutsideClick: false
+                })
+                if (deniedReason) {
+                    $.ajax({
+                        url: baseUrl + "rent?rentId=" + rentID + "&" + "rentStatus=Denied&deniedReason=" + deniedReason,
+                        method: "put",
+                        dataType: "json",
+                        success: function (res) {
+                            Swal.fire('Successfully Denied!', '', 'success');
+                            loadAllRentalRequests();
+                        },
+
+                        error: function (error) {
+                            loadAllRentalRequests();
+                            console.log(JSON.parse(error.responseText).message);
+                        }
+                    });
+                } else {
+                    swal.fire(
+                        'Dismissed',
+                        'Rental Request Denial has been Cancelled..!',
+                        'warning'
+                    )
+                }
+
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                swal.fire(
+                    'Dismissed',
+                    'Rental Request Denial has been Cancelled..!',
+                    'warning'
+                )
+            }
+        });
+    });
+}
