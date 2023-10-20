@@ -1020,3 +1020,21 @@ function loadAllCarIds() {
         }
     });
 }
+
+//Load All Driver IDs
+function loadAllDriverIds() {
+    $("#txtRentDriverId").empty();
+    $("#txtRentDriverId").append(`<option selected disabled>Select Driver</option>`);
+
+    $.ajax({
+        url: baseUrl + "driver",
+        method: "get",
+        success: function (resp) {
+            for (let c1 of resp.data) {
+                if (c1.availabilityType == "Available") {
+                    $("#txtRentDriverId").append(`<option>${c1.driverId}</option>`);
+                }
+            }
+        }
+    });
+}
