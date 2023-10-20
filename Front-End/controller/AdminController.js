@@ -163,7 +163,93 @@ $('#btnManageCustomer').on('click', function () {
     loadAllCustomers();
 });
 
+$('#btnManageDriver').on('click', function () {
+    $('#adminDashboard').css("display", "none");
+    $("#manageRentalRequests_section").css('display', 'none');
+    $("#manageVehicle_section").css('display', 'none');
+    $("#manageBookings_section").css('display', 'none');
+    $("#manageCustomer_section").css('display', 'none');
+    $("#manageDriver_section").css('display', 'block');
+    $("#viewDriverSchedule_section").css('display', 'none');
+    $("#viewCarSchedule_section").css('display', 'none');
+    $("#adminProfile_section").css('display', 'none');
+    $("#manageRentDetails_section").css('display', 'none');
+    $("#managePayment_section").css('display', 'none');
+    loadAllDrivers();
+});
 
+$('#btnViewDriverSchedule').on('click', function () {
+    $('#adminDashboard').css("display", "none");
+    $("#manageRentalRequests_section").css('display', 'none');
+    $("#manageVehicle_section").css('display', 'none');
+    $("#manageBookings_section").css('display', 'none');
+    $("#manageCustomer_section").css('display', 'none');
+    $("#manageDriver_section").css('display', 'none');
+    $("#viewDriverSchedule_section").css('display', 'block');
+    $("#viewCarSchedule_section").css('display', 'none');
+    $("#adminProfile_section").css('display', 'none');
+    $("#manageRentDetails_section").css('display', 'none');
+    $("#managePayment_section").css('display', 'none');
+    loadAllDriversSchedule();
+});
+
+$('#btnViewCarSchedule').on('click', function () {
+    $('#adminDashboard').css("display", "none");
+    $("#manageRentalRequests_section").css('display', 'none');
+    $("#manageVehicle_section").css('display', 'none');
+    $("#manageBookings_section").css('display', 'none');
+    $("#manageCustomer_section").css('display', 'none');
+    $("#manageDriver_section").css('display', 'none');
+    $("#viewDriverSchedule_section").css('display', 'none');
+    $("#viewCarSchedule_section").css('display', 'block');
+    $("#adminProfile_section").css('display', 'none');
+    $("#manageRentDetails_section").css('display', 'none');
+    $("#managePayment_section").css('display', 'none');
+});
+
+$('#btnManagePayments').on('click', function () {
+    $('#adminDashboard').css("display", "none");
+    $("#manageRentalRequests_section").css('display', 'none');
+    $("#manageVehicle_section").css('display', 'none');
+    $("#manageBookings_section").css('display', 'none');
+    $("#manageCustomer_section").css('display', 'none');
+    $("#manageDriver_section").css('display', 'none');
+    $("#viewDriverSchedule_section").css('display', 'none');
+    $("#viewCarSchedule_section").css('display', 'none');
+    $("#adminProfile_section").css('display', 'none');
+    $("#manageRentDetails_section").css('display', 'none');
+    $("#managePayment_section").css('display', 'block');
+    loadAllPayments();
+});
+
+$('#btnManageRentDetails').on('click', function () {
+    $('#adminDashboard').css("display", "none");
+    $("#manageRentalRequests_section").css('display', 'none');
+    $("#manageVehicle_section").css('display', 'none');
+    $("#manageBookings_section").css('display', 'none');
+    $("#manageCustomer_section").css('display', 'none');
+    $("#manageDriver_section").css('display', 'none');
+    $("#viewDriverSchedule_section").css('display', 'none');
+    $("#viewCarSchedule_section").css('display', 'none');
+    $("#adminProfile_section").css('display', 'none');
+    $("#manageRentDetails_section").css('display', 'block');
+    $("#managePayment_section").css('display', 'none');
+    loadAllRentDetails();
+});
+
+$('#btnAdminProfile').on('click', function () {
+    $('#adminDashboard').css("display", "none");
+    $("#manageRentalRequests_section").css('display', 'none');
+    $("#manageVehicle_section").css('display', 'none');
+    $("#manageBookings_section").css('display', 'none');
+    $("#manageCustomer_section").css('display', 'none');
+    $("#manageDriver_section").css('display', 'none');
+    $("#viewDriverSchedule_section").css('display', 'none');
+    $("#viewCarSchedule_section").css('display', 'none');
+    $("#adminProfile_section").css('display', 'block');
+    $("#manageRentDetails_section").css('display', 'none');
+    $("#managePayment_section").css('display', 'none');
+});
 
 $('#option').on('click', function () {
     if ($('#header').css('left') == '-300px') {
