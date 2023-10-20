@@ -88,6 +88,81 @@ function loadDashBoard() {
     });
 }
 
+$('#btnAdminDashBoard').on('click', function () {
+    $('#adminDashboard').css("display", "flex");
+    $("#manageRentalRequests_section").css('display', 'none');
+    $("#manageVehicle_section").css('display', 'none');
+    $("#manageBookings_section").css('display', 'none');
+    $("#manageCustomer_section").css('display', 'none');
+    $("#manageDriver_section").css('display', 'none');
+    $("#viewDriverSchedule_section").css('display', 'none');
+    $("#viewCarSchedule_section").css('display', 'none');
+    $("#adminProfile_section").css('display', 'none');
+    $("#manageRentDetails_section").css('display', 'none');
+    $("#managePayment_section").css('display', 'none');
+    loadDashBoard();
+});
+
+$('#btnRentalRequests').on('click', function () {
+    $('#adminDashboard').css("display", "none");
+    $("#manageRentalRequests_section").css('display', 'block');
+    $("#manageVehicle_section").css('display', 'none');
+    $("#manageBookings_section").css('display', 'none');
+    $("#manageCustomer_section").css('display', 'none');
+    $("#manageDriver_section").css('display', 'none');
+    $("#viewDriverSchedule_section").css('display', 'none');
+    $("#viewCarSchedule_section").css('display', 'none');
+    $("#adminProfile_section").css('display', 'none');
+    $("#manageRentDetails_section").css('display', 'none');
+    $("#managePayment_section").css('display', 'none');
+    loadAllRentalRequests();
+});
+
+$('#btnManageVehicle').on('click', function () {
+    $('#adminDashboard').css("display", "none");
+    $("#manageRentalRequests_section").css('display', 'none');
+    $("#manageVehicle_section").css('display', 'block');
+    $("#manageBookings_section").css('display', 'none');
+    $("#manageCustomer_section").css('display', 'none');
+    $("#manageDriver_section").css('display', 'none');
+    $("#viewDriverSchedule_section").css('display', 'none');
+    $("#viewCarSchedule_section").css('display', 'none');
+    $("#adminProfile_section").css('display', 'none');
+    $("#manageRentDetails_section").css('display', 'none');
+    $("#managePayment_section").css('display', 'none');
+    loadAllCars();
+});
+
+$('#btnManageBookings').on('click', function () {
+    $('#adminDashboard').css("display", "none");
+    $("#manageRentalRequests_section").css('display', 'none');
+    $("#manageVehicle_section").css('display', 'none');
+    $("#manageBookings_section").css('display', 'block');
+    $("#manageCustomer_section").css('display', 'none');
+    $("#manageDriver_section").css('display', 'none');
+    $("#viewDriverSchedule_section").css('display', 'none');
+    $("#viewCarSchedule_section").css('display', 'none');
+    $("#adminProfile_section").css('display', 'none');
+    $("#manageRentDetails_section").css('display', 'none');
+    $("#managePayment_section").css('display', 'none');
+    loadAllBookings();
+});
+
+$('#btnManageCustomer').on('click', function () {
+    $('#adminDashboard').css("display", "none");
+    $("#manageRentalRequests_section").css('display', 'none');
+    $("#manageVehicle_section").css('display', 'none');
+    $("#manageBookings_section").css('display', 'none');
+    $("#manageCustomer_section").css('display', 'block');
+    $("#manageDriver_section").css('display', 'none');
+    $("#viewDriverSchedule_section").css('display', 'none');
+    $("#viewCarSchedule_section").css('display', 'none');
+    $("#adminProfile_section").css('display', 'none');
+    $("#manageRentDetails_section").css('display', 'none');
+    $("#managePayment_section").css('display', 'none');
+    loadAllCustomers();
+});
+
 
 
 $('#option').on('click', function () {
