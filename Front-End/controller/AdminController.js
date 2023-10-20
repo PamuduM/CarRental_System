@@ -486,3 +486,128 @@ function loadAllCars() {
         }
     });
 }
+
+function clearManageCarSectionTextFields() {
+    $("#txtCarID").val("");
+    $("#txtRegNo").val("");
+    $("#txtCarBrand").val("");
+    $("#txtCarType").val("Select Vehicle Type");
+    $("#txtDailyRate").val("");
+    $("#txtMonthlyRate").val("");
+    $("#txtDailyMileage").val("");
+    $("#txtMonthlyMileage").val("");
+    $("#txtCarColor").val("");
+    $("#txtTransmissionType").val("Select Transmission Type");
+    $("#txtNoOfPassengers").val("");
+    $("#txtFuelType").val("Select Fuel Type");
+    $("#txtPricePerExtraKm").val("");
+    $("#txtLDWPayment").val("");
+    $("#txtLastServiceMileage").val("");
+    $("#txtAvailabilityType").val("Select Availability Type");
+
+    // Clear file choosers
+    $("#frontCarImageUploader").val("");
+    $("#backCarImageUploader").val("");
+    $("#sideCarImageUploader").val("");
+    $("#interiorCarImageUploader").val("");
+
+    // Clear images
+    $("#carFront_image").attr('src', "");
+    $("#carBack_image").attr('src', "");
+    $("#carSide_image").attr('src', "");
+    $("#carInterior_image").attr('src', "");
+}
+
+$("#btnClearCarData").on('click', function () {
+    clearManageCarSectionTextFields();
+});
+
+// Update Car
+$("#btnUpdateCar").on('click', function () {
+    let dailyRate = $("#txtDailyRate").val();
+    let monthlyRate = $("#txtMonthlyRate").val();
+    let dailyMileage = $("#txtDailyMileage").val();
+    let monthlyMileage = $("#txtMonthlyMileage").val();
+
+    let carObject = {
+        carId: $("#txtCarID").val(),
+        registerNum: $("#txtRegNo").val(),
+        brand: $("#txtCarBrand").val(),
+        type: $("#txtCarType").val(),
+        priceRate: {dailyRate: dailyRate, monthlyRate: monthlyRate},
+        freeMileage: {dailyMileage: dailyMileage, monthlyMileage: monthlyMileage},
+        color: $("#txtCarColor").val(),
+        transmissionType: $("#txtTransmissionType").val(),
+        numOfPassengers: $("#txtNoOfPassengers").val(),
+        fuelType: $("#txtFuelType").val(),
+        pricePerExtraKM: $("#txtPricePerExtraKm").val(),
+        lossDamageWaiver: $("#txtLDWPayment").val(),
+        lastServiceMileage: $("#txtLastServiceMileage").val(),
+        availabilityType: $("#txtAvailabilityType").val(),
+    };
+
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "Do You Want to Update Car with Images.?",
+        icon: 'question',
+        showCancelButton: true,
+        cancelButtonText: "No",
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Update it!'
+    }).then((result) => {
+        if (!result.isConfirmed) {
+            $.ajax({
+                url: baseUrl + "car",
+                method: "put",
+                data: JSON.stringify(carObject),
+                contentType: "application/json",
+                success: function (res) {
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Car has been Successfully Updated',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                    loadAllCars();
+                },
+
+                error: function (error) {
+                    alert(JSON.parse(error.responseText).message);
+                }
+            });
+
+        } else {
+            if ($('#frontCarImageUploader')[0].files[0] != null && $('#backCarImageUploader')[0].files[0] != null && $('#sideCarImageUploader')[0].files[0] != null && $('#interiorCarImageUploader')[0].files[0] != null) {
+                $.ajax({
+                    url: baseUrl + "car",
+                    method: "put",
+                    data: JSON.stringify(carObject),
+                    contentType: "application/json",
+                    success: function (res) {
+                        uploadCarImages($("#txtCarID").val());
+                        loadAllCars();
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Car has been Successfully Updated',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    },
+
+                    error: function (error) {
+                        alert(JSON.parse(error.responseText).message);
+                    }
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Car hasn\'t been Updated, Something Went Wrong..!',
+                })
+            }
+        }
+    })
+});
