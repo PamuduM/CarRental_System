@@ -468,4 +468,21 @@ function uploadCarImages(carId) {
     })
 }
 
-
+/* Get All Cars */
+function loadAllCars() {
+    $("#tblManageVehicle>tbody").empty();
+    $.ajax({
+        url: baseUrl + "car",
+        method: "get",
+        dataType: "json",
+        success: function (resp) {
+            for (let car of resp.data) {
+                var row = "<tr><td>" + car.carId + "</td><td>" + car.registerNum + "</td><td>" + car.brand + "</td><td>" + car.type + "</td><td>" + car.priceRate.dailyRate + "</td><td>" + car.priceRate.monthlyRate + "</td><td>" + car.freeMileage.dailyMileage + "</td><td>" + car.freeMileage.monthlyMileage + "</td><td>" + car.color + "</td><td>" + car.transmissionType + "</td><td>" + car.numOfPassengers + "</td><td>" + car.fuelType + "</td><td>" + car.pricePerExtraKM + "</td><td>" + car.lossDamageWaiver + "</td><td>" + car.lastServiceMileage + "</td><td>" + car.availabilityType + "</td></tr>";
+                $("#tblManageVehicle").append(row);
+            }
+            bindRowClickEventsOfTblManageVehicle();
+            clearManageCarSectionTextFields();
+            $("#txtCarID").focus();
+        }
+    });
+}
