@@ -436,6 +436,37 @@ $("#btnAddCar").on('click', function () {
     }
 });
 
+// ----------------------------------------------------------
+function uploadCarImages(carId) {
+    var frontImage = $('#frontCarImageUploader')[0].files[0];
+    var frontImageName = carId + "_front-image." + $('#frontCarImageUploader')[0].files[0].name.split(".")[1];
+
+    var backImage = $('#backCarImageUploader')[0].files[0];
+    var backImageName = carId + "_back-image." + $('#backCarImageUploader')[0].files[0].name.split(".")[1]
+
+    var sideImage = $('#sideCarImageUploader')[0].files[0];
+    var sideImageName = carId + "_side-image." + $('#sideCarImageUploader')[0].files[0].name.split(".")[1];
+
+    var interiorImage = $('#interiorCarImageUploader')[0].files[0];
+    var interiorImageName = carId + "_interior-image." + $('#interiorCarImageUploader')[0].files[0].name.split(".")[1];
+
+    var imagesData = new FormData();
+    imagesData.append("front", frontImage, frontImageName);
+    imagesData.append("back", backImage, backImageName);
+    imagesData.append("side", sideImage, sideImageName);
+    imagesData.append("interior", interiorImage, interiorImageName);
+
+    $.ajax({
+        url: baseUrl + "car/uploadCarImages/" + carId,
+        method: "PUT",
+        contentType: false,
+        processData: false,
+        data: imagesData,
+        success: function (res) {
+            alert("Images Uploaded..!");
+        }
+    })
+}
 
 
 $('#navbar > ul > li > a').on('click', function () {
