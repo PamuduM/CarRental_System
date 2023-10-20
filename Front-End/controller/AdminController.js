@@ -1004,3 +1004,19 @@ function loadAllBookings() {
         text: 'Driver ID or Driver NIC Search Field is Empty..!'
     })
 }*/
+
+//Load All Car IDs
+function loadAllCarIds() {
+    $("#txtRentCarID").empty();
+    $("#txtRentCarID").append(`<option selected disabled>Select Car</option>`);
+
+    $.ajax({
+        url: baseUrl + "car",
+        method: "get",
+        success: function (resp) {
+            for (let c1 of resp.data) {
+                $("#txtRentCarID").append(`<option>${c1.carId}</option>`);
+            }
+        }
+    });
+}
