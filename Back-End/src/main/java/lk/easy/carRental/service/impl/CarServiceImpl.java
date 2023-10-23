@@ -4,6 +4,7 @@ import lk.easy.carRental.dto.CarDTO;
 import lk.easy.carRental.dto.ImageDTO;
 import lk.easy.carRental.embedded.VehicleImage;
 import lk.easy.carRental.entity.Car;
+import lk.easy.carRental.entity.Driver;
 import lk.easy.carRental.entity.Rent_detail;
 import lk.easy.carRental.repo.CarRepo;
 import lk.easy.carRental.repo.DriverRepo;

@@ -1,9 +1,16 @@
 package lk.easy.carRental.dto;
 
+import lk.easy.carRental.entity.Car;
+import lk.easy.carRental.entity.Driver;
+import lk.easy.carRental.entity.Rent;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @NoArgsConstructor
 @AllArgsConstructor

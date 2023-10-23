@@ -1,5 +1,26 @@
 package lk.easy.carRental.dto;
 
+import lk.easy.carRental.embedded.CustomerImage;
+import lk.easy.carRental.embedded.Mileage;
+import lk.easy.carRental.embedded.PriceRate;
+import lk.easy.carRental.entity.Car;
+import lk.easy.carRental.entity.Customer;
+import lk.easy.carRental.entity.User_credentials;
+import lk.easy.carRental.enums.CarAvailabilityType;
+import lk.easy.carRental.enums.CarType;
+import lk.easy.carRental.enums.FuelType;
+import lk.easy.carRental.enums.TransmissionType;
+import org.modelmapper.ModelMapper;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 public class Test {
     public static void main(String[] args) {
         Test t1 = new Test();

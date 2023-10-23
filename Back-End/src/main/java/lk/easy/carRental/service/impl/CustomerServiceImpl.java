@@ -1,10 +1,15 @@
 package lk.easy.carRental.service.impl;
 
+import lk.easy.carRental.dto.CarDTO;
 import lk.easy.carRental.dto.CustomerDTO;
+import lk.easy.carRental.dto.ImageDTO;
 import lk.easy.carRental.dto.NicAndLicenseImageDTO;
 import lk.easy.carRental.embedded.CustomerImage;
+import lk.easy.carRental.embedded.VehicleImage;
+import lk.easy.carRental.entity.Car;
 import lk.easy.carRental.entity.Customer;
 import lk.easy.carRental.entity.User_credentials;
+import lk.easy.carRental.repo.CarRepo;
 import lk.easy.carRental.repo.CustomerRepo;
 import lk.easy.carRental.repo.User_credentialsRepo;
 import lk.easy.carRental.service.CustomerService;

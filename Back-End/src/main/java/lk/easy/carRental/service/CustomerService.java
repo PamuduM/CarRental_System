@@ -1,6 +1,7 @@
 package lk.easy.carRental.service;
 
 import lk.easy.carRental.dto.CustomerDTO;
+import lk.easy.carRental.dto.ImageDTO;
 import lk.easy.carRental.dto.NicAndLicenseImageDTO;
 
 import java.util.ArrayList;

@@ -1,16 +1,13 @@
-package lk.easy.carRental.dto;
+package lk.easy.carRental.entity;
 
-import lk.easy.carRental.entity.Customer;
-import lk.easy.carRental.entity.Rent_detail;
+import lk.easy.carRental.enums.RentStatusType;
+import lk.easy.carRental.enums.RequestType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.CascadeType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
@@ -19,7 +16,9 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 @ToString
-public class RentDTO {
+@Entity
+public class Rent {
+    @Id
     private String rentId;
 
     private LocalTime pickUpTime;
@@ -38,7 +37,10 @@ public class RentDTO {
 
     private String deniedReason;
 
-    private CustomerDTO customer;
+    @ManyToOne(cascade = {CascadeType.REFRESH,CascadeType.DETACH})
+    @JoinColumn(name = "customerId",referencedColumnName = "customerId",nullable = false)
+    private Customer customer;
 
-    private List<Rent_detailDTO> rentDetail;
+    @OneToMany(mappedBy = "rent",cascade = CascadeType.ALL)
+    private List<Rent_detail> rentDetail;
 }

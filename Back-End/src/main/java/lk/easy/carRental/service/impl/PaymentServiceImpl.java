@@ -3,8 +3,10 @@ package lk.easy.carRental.service.impl;
 import lk.easy.carRental.dto.PaymentDTO;
 import lk.easy.carRental.entity.Payment;
 import lk.easy.carRental.entity.Rent;
+import lk.easy.carRental.repo.CustomerRepo;
 import lk.easy.carRental.repo.PaymentRepo;
 import lk.easy.carRental.repo.RentRepo;
+import lk.easy.carRental.repo.User_credentialsRepo;
 import lk.easy.carRental.service.PaymentService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @Transactional

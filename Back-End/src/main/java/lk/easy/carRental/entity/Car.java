@@ -3,14 +3,16 @@ package lk.easy.carRental.entity;
 import lk.easy.carRental.embedded.Mileage;
 import lk.easy.carRental.embedded.PriceRate;
 import lk.easy.carRental.embedded.VehicleImage;
+import lk.easy.carRental.enums.CarAvailabilityType;
+import lk.easy.carRental.enums.CarType;
+import lk.easy.carRental.enums.FuelType;
+import lk.easy.carRental.enums.TransmissionType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @NoArgsConstructor
 @AllArgsConstructor

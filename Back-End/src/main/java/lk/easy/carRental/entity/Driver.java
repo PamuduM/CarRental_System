@@ -1,19 +1,22 @@
-package lk.easy.carRental.dto;
+package lk.easy.carRental.entity;
 
-import lk.easy.carRental.entity.User_credentials;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @ToString
-public class DriverDTO {
+@Entity
+public class Driver {
+    @Id
     private String driverId;
 
     private String name;
@@ -30,5 +33,6 @@ public class DriverDTO {
 
     private String availabilityType;
 
-    private User_credentialsDTO user_credentials;
+    @OneToOne(cascade = CascadeType.ALL)
+    private User_credentials user_credentials;
 }
