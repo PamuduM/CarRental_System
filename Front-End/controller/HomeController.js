@@ -74,6 +74,127 @@ function clearCustomerRegistrationFields() {
     $("#customerLicenseImage").attr('src', "");
 }
 
+function generateNewCustomerID() {
+    let customerId;
+    $.ajax({
+        url: baseUrl + "customer/generateNewCustomerID",
+        method: "get",
+        dataType: "json",
+        async: false,
+        success: function (res) {
+            console.log(res.data)
+            customerId = res.data;
+        },
+
+        error: function (error) {
+            alert(JSON.parse(error.responseText).message);
+        }
+    });
+    return customerId;
+}
+
+// Customer Registration
+$("#btnRegister_registerForm").on('click', function () {
+    let username = $("#txtCusUsername").val();
+    let password = $("#txtCusPassword").val();
+    let role = "Customer";
+
+    let cusObject = {
+        customerId: generateNewCustomerID(),
+        nic: $("#txtCustomerNic").val(),
+        name: $("#txtCustomerName").val(),
+        email: $("#txtCustomerEmail").val(),
+        address: $("#txtCustomerAddress").val(),
+        contactNumber: $("#txtCustomerContact").val(),
+        licenseNo: $("#txtCustomerLicenseNo").val(),
+        user_credentials: username
+    };
+
+    let userObject = {username: username, password: password, role: role};
+
+    if ($('#uploadNicImage')[0].files[0] != null && $('#uploadLicenseImage')[0].files[0] != null) {
+        $.ajax({
+            url: baseUrl + "user_credentials",
+            method: "post",
+            data: JSON.stringify(userObject),
+            contentType: "application/json",
+            dataType: "json",
+            success: function (res) {
+                $.ajax({
+                    url: baseUrl + "customer",
+                    method: "post",
+                    data: JSON.stringify(cusObject),
+                    contentType: "application/json",
+
+                    success: function (res) {
+                        uploadCustomerNicAndLicenseImages(cusObject.customerId);
+                        clearCustomerRegistrationFields();
+
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Customer has been Successfully Registered', // res.message
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    },
+                    error: function (error) {
+                        // alert(JSON.parse(error.responseText).message);
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Customer Registration was failed..!'
+                        })
+                    }
+                });
+            },
+            error: function (error) {
+                // alert(JSON.parse(error.responseText).message);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Customer Registration was failed..!'
+                })
+            }
+        });
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'You Should Provide your NIC and License Images Therefore, Customer Registration was failed..!'
+        })
+    }
+});
+
+function uploadCustomerNicAndLicenseImages(customerId) {
+    var nicImage = $('#uploadNicImage')[0].files[0];
+    var nicImageName = customerId + "_NIC-image." + $('#uploadNicImage')[0].files[0].name.split(".")[1];
+
+    var licenseImage = $('#uploadLicenseImage')[0].files[0];
+    var licenseImageName = customerId + "_License-image." + $('#uploadLicenseImage')[0].files[0].name.split(".")[1];
+
+    console.log(nicImageName + " " + licenseImageName);
+
+    let formData = new FormData();
+    formData.append("nicImage", nicImage, nicImageName);
+    formData.append("licenseImage", licenseImage, licenseImageName);
+
+    $.ajax({
+        url: baseUrl + "customer/uploadCustomerImages/" + customerId,
+        method: "PUT",
+        contentType: false,
+        processData: false,
+        data: formData,
+
+        success: function (res) {
+            alert("Customer Images Uploaded Successfully..!"); // res.message
+        },
+        error: function (error) {
+            alert(JSON.parse(error.responseText).message);
+        }
+    })
+}
+
 // User Login
 $("#btnUserLogin").on('click', function () {
     let user = null;
@@ -263,4 +384,103 @@ $('#txtSortingType').on('change', function () {
 
         }
     }
+});
+
+function loadAllCarsDetails() {
+    var availableCount = 0;
+
+    $.ajax({
+        url: baseUrl + "car/sortFromCarBrand",
+        method: "get",
+        dataType: "json",
+        async: false,
+        success: function (resp) {
+            if (resp.data != null) {
+                for (let i = 0; i < resp.data.length; i++) {
+                    console.log(resp.data[i]);
+
+                    $.ajax({
+                        url: baseUrl + "car/getCarImages/" + resp.data[i].carId,
+                        method: "get",
+                        async: false,
+                        dataType: "json",
+                        success: function (resp) {
+                            $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(1)").children(":eq(0)").attr('src', "../assets/img/uploads/carImages/" + resp.data.front);
+                        }
+                    });
+
+                    $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(0)").children(":eq(1)").text(resp.data[i].brand);
+                    $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(0)").children(":eq(2)").text("Free Km for Day - " + resp.data[i].freeMileage.dailyMileage + " Km");
+                    $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(0)").children(":eq(3)").text("Free Km for Month - " + resp.data[i].freeMileage.monthlyMileage + " Km");
+                    $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(0)").children(":eq(4)").text("Price Per Extra Km - " + resp.data[i].pricePerExtraKM + " LKR");
+
+                    $.ajax({
+                        url: baseUrl + "car/" + resp.data[i].brand + "/Available",
+                        method: "get",
+                        dataType: "json",
+                        async: false,
+                        success: function (resp) {
+                            $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(0)").children(":eq(5)").text("Available Car Qty - " + resp.data);
+
+                            if (resp.data > 0) {
+                                availableCount += resp.data;
+                            }
+                        }
+                    });
+
+                    $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(2)").children(":eq(0)").text(resp.data[i].brand);
+
+                    $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(3)").children(":eq(0)").empty();
+                    $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(3)").children(":eq(0)").append('<i class="fa-solid fa-gas-pump"></i>');
+                    $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(3)").children(":eq(0)").append(resp.data[i].fuelType);
+
+                    $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(3)").children(":eq(1)").empty();
+                    $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(3)").children(":eq(1)").append('<i class="fa-solid fa-users"></i>');
+                    $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(3)").children(":eq(1)").append(resp.data[i].numOfPassengers);
+
+                    $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(3)").children(":eq(2)").empty();
+                    $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(3)").children(":eq(2)").append('<i class="fa-solid fa-gear"></i>');
+                    $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(3)").children(":eq(2)").append(resp.data[i].transmissionType);
+
+                    $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(4)").children(":eq(0)").children(":eq(0)").text("Rs." + resp.data[i].priceRate.dailyRate);
+                    $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(4)").children(":eq(1)").children(":eq(0)").text("Rs." + resp.data[i].priceRate.monthlyRate);
+                }
+
+                for (let i = 0; i < $("#carsCollection > .carDetails_section").children().length; i++) {
+                    $("#carsCollection > .carDetails_section").children(`:eq(${i})`).css('display', 'flex');
+                }
+
+                for (let i = resp.data.length; i < $("#carsCollection > .carDetails_section").children().length; i++) {
+                    $("#carsCollection > .carDetails_section").children(`:eq(${i})`).css('display', 'none');
+                }
+            } else {
+                console.log("Hureee")
+                for (let i = 0; i < $("#carsCollection > .carDetails_section").children().length; i++) {
+                    $("#carsCollection > .carDetails_section").children(`:eq(${i})`).css('display', 'none');
+                }
+            }
+        }
+    });
+}
+
+$('#btnClearSorting').on('click', function () {
+    loadAllCarsDetails();
+
+    $("#txtSortingType").empty();
+    $("#txtSortingType").append(`<option selected disabled>Sort By</option>`);
+    $("#txtSortingType").append(`<option>Type</option>`);
+    $("#txtSortingType").append(`<option>Brand</option>`);
+    $("#txtSortingType").append(`<option>Fuel Type</option>`);
+    $("#txtSortingType").append(`<option>Transmission Type</option>`);
+    $("#txtSortingType").append(`<option>Price</option>`);
+    $("#txtSortingType").append(`<option>No Of Passengers</option>`);
+
+    $('#vehicleTypeRow').css('display', 'none');
+    $('#brandRow').css('display', 'none');
+    $('#fuelTypeRow').css('display', 'none');
+    $('#transmissionTypeRow').css('display', 'none');
+    $('#priceRow').css('display', 'none');
+    $('#NoOfPassengersRow').css('display', 'none');
+
+    $('input:radio').prop('checked', false);
 });
