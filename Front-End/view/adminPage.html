@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Page</title>
+    <link rel="icon" href="../assets/img/rent-02.png">
+    <meta content="width=device-width initial-scale=1" name="viewport">
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/bootstrap/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="../assets/boxicons/css/boxicons.min.css">
+    <link rel="stylesheet" href="../assets/fonts/css/all.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" id="theme-styles">
+    <link rel="stylesheet" href="../assets/style/styles.css">
+
+</head>
+<body style="background-color: #fafaff;" class="container-fluid">
+
+<!-- ======= Mobile nav toggle button ======= -->
+<i id="option" class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+
+<!--Header-->
+<header id="header">
+    <div class="d-flex flex-column">
+        <div class="profile">
+            <h2 id="main-h2" class="text-center easy_car_rental">
+                <a class="navbar-brand fw-bolder fs-2 position-relative" href="#">
+                    <!--<img class="position-relative" src="../assets/img/rent-03.png">-->
+                    <span id="easy" style="font-size: 36px;" class="text-success">Easy</span>
+                    <span style="font-size: 23px; margin-left: -3px;">Car Rental</span></a>
+            </h2>
+
+            <h5 id="txtAdminPanel"><i class='bx bx-user-circle'></i> Admin Panel</h5>
+
+            <hr class="w-100">
+        </div>
+
+        <nav id="navbar" class="nav-menu navbar">
+            <ul>
+                <li id="btnAdminDashBoard">
+                    <a href="#" class="nav-link scrollto active">
+                        <i class="fa-solid fa-house-chimney"></i>
+                    <span class="animate__animated">Dashboard</span></a>
+                </li>
+
+                <li id="btnRentalRequests"><a href="#" class="nav-link scrollto"><i class="fa-solid fa-user-check"></i>
+                    <span>Rental Requests</span></a></li>
+
+                <li id="btnManageVehicle"><a href="#" class="nav-link scrollto"><i class="fa-solid fa-car-side"></i>
+                    <span>Manage Vehicle</span></a>
+                </li>
+
+                <li id="btnManageBookings"><a href="#" class="nav-link scrollto"><i class="fa-solid fa-folder-plus"></i>
+                    <span>Manage Bookings</span></a></li>
+
+                <li id="btnManageCustomer"><a href="#" class="nav-link scrollto"><i class="fa-solid fa-person"></i>
+                    <span>Manage Customer</span></a>
+                </li>
+
+                <li id="btnManageDriver"><a href="#" class="nav-link scrollto"><i class="fa-solid fa-user-nurse"></i>
+                    <span>Manage Driver</span></a>
+                </li>
+
+                <li id="btnViewDriverSchedule"><a href="#" class="nav-link scrollto"><i class="fa-solid fa-clipboard-list"></i>
+                    <span>View Driver Schedule</span></a>
+                </li>
+
+                <li id="btnViewCarSchedule"><a href="#" class="nav-link scrollto"><i class="fa-solid fa-clipboard-list"></i>
+                    <span>View Car Schedule</span></a>
+                </li>
+
+                <li id="btnManagePayments"><a href="#" class="nav-link scrollto"><i class="fa-solid fa-comment-dollar"></i>
+                    <span>Manage Payments</span></a>
+                </li>
+
+                <li id="btnManageRentDetails"><a href="#" class="nav-link scrollto"><i class="fa-solid fa-envelope-open-text"></i>
+                    <span>Manage Rent Details</span></a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!--Admin Dashboard-->
+<main id="adminDashboard" class="row">
+    <div class="d-flex col-4">
+        <h1>Registered Users</h1>
+        <span id="registeredUsersCount">0</span>
+    </div>
+
+    <div class="d-flex col-4">
+        <h1>Total Bookings</h1>
+        <span id="totalBookingsCount">0</span>
+    </div>
+
+    <div class="d-flex col-4">
+        <h1>Active Bookings</h1>
+        <span id="activeBookingsCount">0</span>
+    </div>
+
+    <div class="d-flex col-4">
+        <h1>Available Cars</h1>
+        <span id="availableCarCount">0</span>
+    </div>
+
+    <div class="d-flex col-4">
+        <h1>Reserved Cars</h1>
+        <span id="reservedCarCount">0</span>
+    </div>
+
+    <div class="d-flex col-4">
+        <h1>Occupied Drivers</h1>
+        <span id="occupiedDriversCount">0</span>
+    </div>
+
+    <div class="d-flex col-4">
+        <h1>Available Drivers</h1>
+        <span id="availableDriversCount">0</span>
+    </div>
+
+    <div class="d-flex col-4">
+        <h1>Need To Maintenance</h1>
+        <span id="needToMaintenanceCount">0</span>
+    </div>
+
+    <div class="d-flex col-4">
+        <h1>Under Maintenance</h1>
+        <span id="underMaintenanceCount">0</span>
+    </div>
+</main>
+
+<!--Manage Rental Requests-->
+<main id="manageRentalRequests_section" class="admin-sections">
+    <section class="row justify-content-start">
+        <div class="col-xl-7 col-lg-9 col-md-11 col-12 justify-content-center">
+            <h1 style="font-size: 23px;" id="myProfileHeader">Manage Rental Requests <i
+                    class="fa-solid fa-list-check"></i></h1>
+        </div>
+    </section>
+
+    <section class="row justify-content-center">
+        <!--Manage Rental Requests Table-->
+        <section class="d-flex flex-column h-50 col-11 col-xl-12 bg-white shadow-lg align-items-center
+        pt-3 mt-4">
+            <h3 class="text-center bg-primary p-2 text-light rounded-3 col-12 fs-4">Manage Rental Requests</h3>
+            <div class="row h-60 col-12 col-lg-12 rounded-2 table-responsive">
+                <table id="tblManageRentalRequests"
+                       class="table table-striped table-hover rounded-5 mb-4 table-bordered">
+                    <thead class="text-white green-hd" style="background: #17377f;">
+                    <tr>
+                        <th>Rent ID</th>
+                        <th>Vehicle ID</th>
+                        <th>Pick Up Date</th>
+                        <th>Pick Up Time</th>
+                        <th>Return Date</th>
+                        <th>Return Time</th>
+                        <th style="padding-bottom: 20px;">Location</th>
+                        <th>LDW</th>
+                        <th>Customer ID</th>
+                        <th>Customer Name</th>
+                        <th>Driver ID</th>
+                        <th>Rent Status</th>
+                        <th style="padding-bottom: 20px;">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!--<tr>
+                        <td>R00-001</td>
+                        <td>V001</td>
+                        <td>Suzuki-Alto</td>
+                        <td>2023-02-19</td>
+                        <td>2023-02-22</td>
+                        <td>Galle Town</td>
+                        <td>Paid</td>
+                        <td>C00-001</td>
+                        <td>Nimal Bandara</td>
+                        <td>D001</td>
+                        <td><span class="badge rounded-pill text-bg-warning statusBadge">Pending</span></td>
+                        <td>
+                            <div class="btn-group btnGroups" role="group" aria-label="Basic mixed styles example">
+                                <button type="button" class="btn btn-success btnAccept">Accept</button>
+                                <button type="button" class="btn btn-danger btnDeny">Deny</button>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>R00-001</td>
+                        <td>V001</td>
+                        <td>Suzuki-Alto</td>
+                        <td>2023-02-19</td>
+                        <td>2023-02-22</td>
+                        <td>Galle Town</td>
+                        <td>Paid</td>
+                        <td>C00-001</td>
+                        <td>Nimal Bandara</td>
+                        <td>D001</td>
+                        <td><span class="badge rounded-pill text-bg-warning statusBadge">Pending</span></td>
+                        <td>
+                            <div class="btn-group btnGroups" role="group" aria-label="Basic mixed styles example">
+                                <button type="button" class="btn btn-success btnAccept">Accept</button>
+                                <button type="button" class="btn btn-danger btnDeny">Deny</button>
+                            </div>
+                        </td>
+                    </tr>-->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </section>
+</main>
+
+<!--Manage Vehicles Section-->
+<main id="manageVehicle_section" class="admin-sections">
+    <section class="row justify-content-start">
+        <div class="col-xl-7 col-lg-9 col-md-11 col-12 justify-content-center">
+            <h1 id="manageVehicleHeader">Manage Vehicle <i class="fa-solid fa-list-check"></i></h1>
+        </div>
+    </section>
+
+    <section class="row justify-content-lg-center">
+        <!--<form id="imageUploaderForm"
+              class="row col-xl-4 d-lg-flex d-md-flex justify-content-md-center justify-content-lg-center">
+        </form>-->
+        <section class="col-xl-7 justify-content-center">
+            <form id="manageCarForm" class="row g-3">
+                <div id="manageVehicleCarousel" class="carousel slide col-12 justify-content-center"
+                     data-bs-ride="false">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#manageVehicleCarousel" data-bs-slide-to="0"
+                                class="active"
+                                aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#manageVehicleCarousel" data-bs-slide-to="1"
+                                aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#manageVehicleCarousel" data-bs-slide-to="2"
+                                aria-label="Slide 3"></button>
+                        <button type="button" data-bs-target="#manageVehicleCarousel" data-bs-slide-to="3"
+                                aria-label="Slide 4"></button>
+                    </div>
+                    <div id="all_Car_carousel_images" class="carousel-inner">
+                        <div id="carFront_image_carousel" class="carousel-item active text-center">
+                            <img id="carFront_image" class="d-inline-block img-fluid">
+                        </div>
+
+                        <div id="carBack_image_carousel" class="carousel-item text-center">
+                            <img style="height: 260px; object-fit: contain;" id="carBack_image"
+                                 class="d-inline-block img-fluid">
+                        </div>
+
+                        <div id="carSide_image_carousel" class="carousel-item text-center">
+                            <img style="height: 238px;; object-fit: contain;" id="carSide_image"
+                                 class="d-inline-block img-fluid">
+                        </div>
+
+                        <div id="carInterior_image_carousel" class="carousel-item text-center">
+                            <img id="carInterior_image" style="height: 243px;; object-fit: contain;"
+                                 class="d-inline-block img-fluid">
+                        </div>
+                    </div>
+
+                    <button class="carousel-control-prev" type="button" data-bs-target="#manageVehicleCarousel"
+                            data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+
+                    <button class="carousel-control-next" type="button" data-bs-target="#manageVehicleCarousel"
+                            data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+
+                <div>
+                    <label for="frontCarImageUploader" class="form-label">Upload Front Image</label>
+                    <input class="form-control col-6 mb-3" type="file" id="frontCarImageUploader" name="front">
+                </div>
+
+                <div>
+                    <label for="backCarImageUploader" class="form-label">Upload Back Image</label>
+                    <input class="form-control col-6 mb-3" type="file" id="backCarImageUploader" name="back">
+                </div>
+
+                <div>
+                    <label for="sideCarImageUploader" class="form-label">Upload Side Image</label>
+                    <input class="form-control col-6 mb-3" type="file" id="sideCarImageUploader" name="side">
+                </div>
+
+                <div>
+                    <label for="interiorCarImageUploader" class="form-label">Upload Interior Image</label>
+                    <input class="form-control col-6 mb-3" type="file" id="interiorCarImageUploader" name="interior">
+                </div>
+
+                <div class="col-md-4">
+                    <label for="txtCarID" class="form-label">Car ID</label>
+                    <input type="text" class="form-control" id="txtCarID" name="carId">
+                </div>
+
+                <div class="col-md-4">
+                    <label for="txtRegNo" class="form-label">Register Number</label>
+                    <input type="text" class="form-control" id="txtRegNo" name="registerNum">
+                </div>
+
+                <div class="col-md-4">
+                    <label for="txtCarBrand" class="form-label">Brand</label>
+                    <input type="text" class="form-control" id="txtCarBrand" name="brand">
+                </div>
+
+                <!--<div class="col-md-4">
+                    <label for="txtCarType" class="form-label">Type</label>
+                    <input type="text" class="form-control" id="txtCarType">
+                </div>-->
+
+                <div class="col-md-4">
+                    <label for="txtCarType" class="form-label">Vehicle Type</label>
+                    <select id="txtCarType" class="form-select" aria-label="Default select example" name="type">
+                        <option selected disabled>Select Vehicle Type</option>
+                        <option>General</option>
+                        <option>Premium</option>
+                        <option>Luxury</option>
+                    </select>
+                </div>
+
+                <!--======================================-->
+
+                <div class="col-md-4">
+                    <label for="txtDailyRate" class="form-label">Daily Rate</label>
+                    <input type="text" class="form-control" id="txtDailyRate" name="dailyRate">
+                </div>
+
+                <div class="col-md-4">
+                    <label for="txtMonthlyRate" class="form-label">Monthly Rate</label>
+                    <input type="text" class="form-control" id="txtMonthlyRate" name="monthlyRate">
+                </div>
+
+                <div class="col-md-4">
+                    <label for="txtDailyMileage" class="form-label">Free Km for a Day</label>
+                    <input type="text" class="form-control" id="txtDailyMileage" name="dailyMileage">
+                </div>
+
+                <div class="col-md-4">
+                    <label for="txtMonthlyMileage" class="form-label">Free Km for a Month</label>
+                    <input type="text" class="form-control" id="txtMonthlyMileage" name="monthlyMileage">
+                </div>
+
+                <!--========================================-->
+
+                <div class="col-md-4">
+                    <label for="txtCarColor" class="form-label">Color</label>
+                    <input type="text" class="form-control" id="txtCarColor" name="color">
+                </div>
+
+                <div class="col-md-4">
+                    <label for="txtTransmissionType" class="form-label">Transmission Type</label>
+                    <select id="txtTransmissionType" class="form-select" aria-label="Default select example"
+                            name="transmissionType">
+                        <option selected disabled>Select Transmission Type</option>
+                        <option>Manual</option>
+                        <option>Auto</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="txtNoOfPassengers" class="form-label">No of Passengers</label>
+                    <input type="text" class="form-control" id="txtNoOfPassengers" name="numOfPassengers">
+                </div>
+
+                <div class="col-md-4">
+                    <label for="txtFuelType" class="form-label">Fuel Type</label>
+                    <select id="txtFuelType" class="form-select" aria-label="Default select example" name="fuelType">
+                        <option selected disabled>Select Fuel Type</option>
+                        <option>Diesel</option>
+                        <option>Petrol</option>
+                    </select>
+                </div>
+
+                <!--==============================================-->
+
+                <div class="col-md-4">
+                    <label for="txtPricePerExtraKm" class="form-label">Price Per Extra Km</label>
+                    <input type="text" class="form-control" id="txtPricePerExtraKm" name="pricePerExtraKM">
+                </div>
+
+                <div class="col-md-4">
+                    <label for="txtLDWPayment" class="form-label">LDW Payment</label>
+                    <input type="text" class="form-control" id="txtLDWPayment" name="lossDamageWaiver">
+                </div>
+
+                <div class="col-md-4">
+                    <label for="txtLastServiceMileage" class="form-label">Last Service Mileage</label>
+                    <input type="text" class="form-control" id="txtLastServiceMileage" name="lastServiceMileage">
+                </div>
+
+                <div class="col-md-5">
+                    <label for="txtAvailabilityType" class="form-label">Availability Type</label>
+                    <select id="txtAvailabilityType" class="form-select" aria-label="Default select example"
+                            name="availabilityType">
+                        <option selected disabled>Select Availability Type</option>
+                        <option>Available</option>
+                        <option>Unavailable</option>
+                        <option>Under Maintenance</option>
+                        <option>Need Maintenance</option>
+                    </select>
+                </div>
+
+                <!--==============================================-->
+
+                <div class="btn-group col-md-9 col-12 btnGroup" role="group"
+                     aria-label="Basic mixed styles example">
+                    <button id="btnAddCar" type="button" class="btn btn-success">+ Add Car</button>
+                    <button id="btnUpdateCar" type="button" class="btn btn-primary">Update</button>
+                    <button id="btnDeleteCar" type="button" class="btn btn-danger">Delete</button>
+                    <button id="btnClearCarData" type="button" class="btn btn-secondary">Clear</button>
+                </div>
+            </form>
+        </section>
+    </section>
+
+    <section class="row justify-content-center">
+        <!--Manage Cars Table-->
+        <section class="d-flex flex-column h-50 col-11 col-xl-12 bg-white shadow-lg align-items-center
+        pt-3 mt-4">
+            <h3 class="text-center bg-primary p-2 text-light rounded-3 col-12 fs-4">Manage Vehicle</h3>
+            <div class="row h-60 col-12 col-lg-12 rounded-2 table-responsive">
+                <table id="tblManageVehicle" class="table table-striped table-hover rounded-5 mb-5 table-bordered">
+                    <thead class="text-white green-hd" style="background: #17377f;">
+                    <tr>
+                        <th>Car ID</th>
+                        <th>Reg No</th>
+                        <th>Brand</th>
+                        <th>Type</th>
+                        <th>Daily Rate</th>
+                        <th>Monthly Rate</th>
+                        <th>Daily Mileage</th>
+                        <th>Monthly Mileage</th>
+                        <th>Color</th>
+                        <th>Transmission Type</th>
+                        <th>No Of Passengers</th>
+                        <th>Fuel Type</th>
+                        <th>Price Per Extra Km</th>
+                        <th>LDW</th>
+                        <th>Last Service Mileage</th>
+                        <th>Availability Type</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>V001</td>
+                        <td>AAB-3580</td>
+                        <td>Toyota</td>
+                        <td>General</td>
+                        <td>2500</td>
+                        <td>64,350</td>
+                        <td>100 Km</td>
+                        <td>2400 Km</td>
+                        <td>Blue</td>
+                        <td>Manual</td>
+                        <td>4</td>
+                        <td>Diesel</td>
+                        <td>30</td>
+                        <td>15000</td>
+                        <td>350 Km</td>
+                        <td>Available</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </section>
+</main>
+
+<!--Manage Bookings Section-->
+<main id="manageBookings_section" class="admin-sections">
+    <section class="row justify-content-start">
+        <div class="col-xl-7 col-lg-9 col-md-11 col-12 justify-content-center">
+            <h1 id="manageBookingsHeader">Manage Bookings <i class="fa-solid fa-list-check"></i></h1>
+        </div>
+    </section>
+
+    <section class="row justify-content-lg-center mt-4">
+        <section class="col-xl-11 justify-content-center">
+            <form id="manageBookingsForm" class="row g-3 justify-content-sm-end justify-content-center">
+                <div class="col-md-4 col-lg-4 col-xl-3">
+                    <label for="txtRentID" class="form-label">Rent ID</label>
+                    <input type="text" class="form-control" id="txtRentID" placeholder="Search From Pressing Enter">
+                </div>
+
+                <div class="col-md-4 col-lg-4 col-xl-3">
+                    <label for="txtRentCarID" class="form-label">Car ID</label>
+                    <select id="txtRentCarID" class="form-select" aria-label="Default select example">
+                        <option selected disabled>Select Car</option>
+                    </select>
+                </div>
+
+                <!--<div class="col-md-4 col-lg-4 col-xl-3">
+                    <label for="txtRentCarType" class="form-label">Car Type</label>
+                    <select id="txtRentCarType" class="form-select" aria-label="Default select example">
+                        <option selected disabled>Select Car Type</option>
+                        <option>General</option>
+                        <option>Premium</option>
+                        <option>Luxury</option>
+                    </select>
+                </div>-->
+
+                <div class="col-md-4 col-lg-4 col-xl-3">
+                    <label for="txtRentDriverReqType" class="form-label">Driver Requesting Type</label>
+                    <select id="txtRentDriverReqType" class="form-select" aria-label="Default select example">
+                        <option selected disabled>Select Type</option>
+                        <option>Yes</option>
+                        <option>No</option>
+                    </select>
+
+                </div>
+
+                <!--======================================-->
+
+                <div class="col-md-4 col-lg-4 col-xl-3">
+                    <label for="txtRentDriverId" class="form-label">Driver ID</label>
+                    <select id="txtRentDriverId" class="form-select" aria-label="Default select example">
+                        <option selected disabled>Select Driver</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4 col-lg-4 col-xl-3">
+                    <label for="txtRentDriverName" class="form-label">Driver Name</label>
+                    <input type="text" disabled class="form-control" id="txtRentDriverName">
+                </div>
+
+                <div class="col-md-4 col-lg-4 col-xl-3">
+                    <label for="txtRentPickUpTime" class="form-label">Pick Up Time</label>
+                    <input type="time" class="form-control" id="txtRentPickUpTime">
+                </div>
+
+                <div class="col-md-4 col-lg-4 col-xl-3">
+                    <label for="txtRentPickUpDate" class="form-label">Pick Up Date</label>
+                    <input type="date" class="form-control" id="txtRentPickUpDate">
+                </div>
+
+                <!--========================================-->
+
+                <div class="col-md-4 col-lg-4 col-xl-3">
+                    <label for="txtRentReturnTime" class="form-label">Return Time</label>
+                    <input type="time" class="form-control" id="txtRentReturnTime">
+                </div>
+
+                <div class="col-md-4 col-lg-4 col-xl-4">
+                    <label for="txtRentReturnDate" class="form-label">Return Date</label>
+                    <input type="date" class="form-control" id="txtRentReturnDate">
+                </div>
+
+                <div class="col-md-4 col-lg-4 col-xl-4">
+                    <label for="txtRentStatus" class="form-label">Rent Status</label>
+                    <input disabled type="text" class="form-control" id="txtRentStatus">
+                </div>
+
+                <div class="col-md-4 col-lg-4 col-xl-4">
+                    <label for="txtRentLocation" class="form-label">Location</label>
+                    <input type="text" class="form-control" id="txtRentLocation">
+                </div>
+
+                <!--==============================================-->
+
+                <div id="btnGroupManageBookings"
+                     class="btn-group col-xl-3 col-md-5 col-10 btnGroup justify-content-sm-center" role="group"
+                     aria-label="Basic mixed styles example">
+                    <button id="btnUpdateBookings" type="button" class="btn btn-primary">Update</button>
+                    <!-- <button type="button" class="btn btn-danger">Delete</button>-->
+                    <button id="btnClear_ManageBookingsSection" type="button" class="btn btn-secondary">Clear</button>
+                </div>
+            </form>
+        </section>
+    </section>
+
+    <section class="row justify-content-center">
+        <!--Manage Bookings Table-->
+        <section class="d-flex flex-column h-50 col-11 col-xl-12 bg-white shadow-lg align-items-center
+        pt-3 mt-4">
+            <h3 class="text-center bg-primary p-2 text-light rounded-3 col-12 fs-4">Manage Bookings</h3>
+            <div class="row h-60 col-12 col-lg-12 rounded-2 table-responsive">
+                <table id="tblManageBookings" class="table table-striped table-hover rounded-5 mb-5 table-bordered">
+                    <thead class="text-white green-hd" style="background: #17377f;">
+                    <tr>
+                        <th>Rent ID</th>
+                        <th>Car ID</th>
+                        <th>Driver Req Type</th>
+                        <th>Driver ID</th>
+                        <th>Driver Name</th>
+                        <th>Pick Up Time</th>
+                        <th>Pick Up Date</th>
+                        <th>Return Time</th>
+                        <th>Return Date</th>
+                        <th>Rent Status</th>
+                        <th>Location</th>
+                    </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </section>
+    </section>
+</main>
+
+<!--Manage Customers Section-->
+<main id="manageCustomer_section" class="admin-sections">
+    <section class="row justify-content-start">
+        <div class="col-xl-7 col-lg-9 col-md-11 col-12 justify-content-center">
+            <h1 id="manageCustomerHeader">Manage Customer <i class="fa-solid fa-list-check"></i></h1>
+        </div>
+    </section>
+
+    <section class="row justify-content-center mt-4">
+        <div class="form-group col-xxl-3 col-xl-4 col-lg-4 col-md-4 col-12 mb-3">
+            <select id="cmbSelectCustomer" style="font-size: 15px;" class="form-select"
+                    aria-label="Default select example">
+                <option selected>Customer ID</option>
+                <option>Customer NIC</option>
+            </select>
+        </div>
+
+        <div class="form-group col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-12 mb-3">
+            <input class="form-control" id="txtSearchCustomer" type="search">
+        </div>
+
+        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-10 text-center text-sm-center text-md-center text-lg-start text-xl-start justify-content-center">
+            <button id="btnSearchCustomer" type="button" class="btn btn-primary">Search Customer</button>
+        </div>
+    </section>
+
+    <section class="row justify-content-center px-3">
+        <form class="row g-3">
+            <div class="col-md-4">
+                <label for="txtCustomerID" class="form-label">Customer ID</label>
+                <input type="text" class="form-control" id="txtCustomerID">
+            </div>
+
+            <div class="col-md-4">
+                <label for="txtCusUsername" class="form-label">Username</label>
+                <input type="text" class="form-control" id="txtCusUsername">
+            </div>
+
+            <div class="col-md-4">
+                <label for="txtCusPassword" class="form-label">Password</label>
+                <input type="text" class="form-control" id="txtCusPassword">
+            </div>
+
+            <div class="col-md-3">
+                <label for="txtCustomerName" class="form-label">Name</label>
+                <input type="text" class="form-control" id="txtCustomerName">
+            </div>
+
+            <div class="col-md-5">
+                <label for="txtCustomerAddress" class="form-label">Address</label>
+                <input type="text" class="form-control" id="txtCustomerAddress">
+            </div>
+
+            <div class="col-md-4">
+                <label for="txtCustomerContact" class="form-label">Contact Number</label>
+                <input type="text" class="form-control" id="txtCustomerContact">
+            </div>
+
+            <div class="col-md-4">
+                <label for="txtCustomerEmail" class="form-label">Email</label>
+                <input type="text" class="form-control" id="txtCustomerEmail">
+            </div>
+
+            <div class="col-md-4">
+                <label for="txtCustomerNic" class="form-label">Customer NIC</label>
+                <input type="text" class="form-control" id="txtCustomerNic">
+            </div>
+
+            <div class="col-md-4">
+                <label for="txtCustomerLicenseNo" class="form-label">Driving License No</label>
+                <input type="text" class="form-control" id="txtCustomerLicenseNo">
+            </div>
+
+            <div class="col-md-6">
+                <label for="customerNicImage" class="form-label d-block">NIC Image</label>
+                <img id="customerNicImage" class="img-fluid">
+            </div>
+
+            <div class="col-md-6">
+                <label for="customerLicenseImage" class="form-label d-block">License Image</label>
+                <img id="customerLicenseImage" class="img-fluid">
+            </div>
+
+            <div id="btnGroupManageCustomer" style="margin-top: 32px; gap: 15px;"
+                 class="col-12 d-inline-flex justify-content-end">
+                <button id="btnViewAllCustomers" type="button" class="btn btn-primary">View All Customers</button>
+                <button id="btnClearCustomerFields" type="button" class="btn btn-secondary">Clear</button>
+            </div>
+        </form>
+    </section>
+
+    <section class="row justify-content-center">
+        <!--Manage Bookings Table-->
+        <section class="d-flex flex-column h-50 col-11 col-xl-12 bg-white shadow-lg align-items-center
+        pt-3 mt-4">
+            <h3 class="text-center bg-primary p-2 text-light rounded-3 col-12 fs-4">Manage Customer</h3>
+            <div class="row h-60 col-12 col-lg-12 rounded-2 table-responsive">
+                <table id="tblManageCustomer" class="table table-striped table-hover rounded-5 mb-5 table-bordered">
+                    <thead class="text-white green-hd" style="background: #17377f;">
+                    <tr>
+                        <th>Customer ID</th>
+                        <th>Username</th>
+                        <th>Password</th>
+                        <th>Customer Name</th>
+                        <th>Address</th>
+                        <th>Contact Number</th>
+                        <th>Email</th>
+                        <th>Customer NIC</th>
+                        <th>Driving License No</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>C00-001</td>
+                        <td>kalhara089</td>
+                        <td>kalhara1234</td>
+                        <td>Kasun Kalhara</td>
+                        <td>46/D, Dangedara, Galle</td>
+                        <td>0756784236</td>
+                        <td>kasunkalhara33@gmail.com</td>
+                        <td>199867457V</td>
+                        <td>B5678569</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </section>
+</main>
+
+<!--Manage Drivers Section-->
+<main id="manageDriver_section" class="admin-sections">
+    <section class="row justify-content-start">
+        <div class="col-xl-7 col-lg-9 col-md-11 col-12 justify-content-center">
+            <h1 id="manageDriverHeader">Manage Driver <i class="fa-solid fa-list-check"></i></h1>
+        </div>
+    </section>
+
+    <section class="row justify-content-center mt-4">
+        <div class="form-group col-xxl-3 col-xl-4 col-lg-4 col-md-4 col-12 mb-3">
+            <select style="font-size: 15px;" class="form-select" aria-label="Default select example">
+                <option selected value="1">Driver ID</option>
+                <option value="2">Driver NIC</option>
+            </select>
+        </div>
+
+        <div class="form-group col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-12 mb-3">
+            <input class="form-control" id="txtSearchDriver" type="search">
+        </div>
+
+        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-10 text-center text-sm-center text-md-center text-lg-start text-xl-start justify-content-center">
+            <button id="btnSearchDriver" type="button" class="btn btn-primary">Search Driver</button>
+        </div>
+    </section>
+
+    <section class="row justify-content-center px-3">
+        <form class="row g-3">
+            <div class="col-md-4">
+                <label for="txtDriverId" class="form-label">Driver ID</label>
+                <input disabled type="text" class="form-control" id="txtDriverId">
+            </div>
+
+            <div class="col-md-4">
+                <label for="txtDriverUsername" class="form-label">Username</label>
+                <input type="text" class="form-control" id="txtDriverUsername">
+            </div>
+
+            <div class="col-md-4">
+                <label for="txtDriverPassword" class="form-label">Password</label>
+                <input type="text" class="form-control" id="txtDriverPassword">
+            </div>
+
+            <div class="col-md-3">
+                <label for="txtDriverName" class="form-label">Driver Name</label>
+                <input type="text" class="form-control" id="txtDriverName">
+            </div>
+
+            <div class="col-md-6">
+                <label for="txtDriverAddress" class="form-label">Address</label>
+                <input type="text" class="form-control" id="txtDriverAddress">
+            </div>
+
+            <div class="col-md-3">
+                <label for="txtDriverContact" class="form-label">Contact Number</label>
+                <input type="text" class="form-control" id="txtDriverContact">
+            </div>
+
+            <div class="col-md-4">
+                <label for="txtDriverNic" class="form-label">Driver NIC</label>
+                <input type="text" class="form-control" id="txtDriverNic">
+            </div>
+
+            <div class="col-md-4">
+                <label for="txtDriverLicenseNo" class="form-label">Driving License No</label>
+                <input type="text" class="form-control" id="txtDriverLicenseNo">
+            </div>
+
+            <div class="col-md-4">
+                <label for="txtDriverAvailabilityType" class="form-label">Availability Type</label>
+                <select id="txtDriverAvailabilityType" class="form-select" aria-label="Default select example">
+                    <option selected disabled>Select Availability Type</option>
+                    <option>Available</option>
+                    <option>Unavailable</option>
+                </select>
+            </div>
+
+            <div class="col-md-6 text-sm-center text-center text-xl-start">
+                <label for="driverLicenseImage" class="form-label d-block">Driver's License Image</label>
+                <img id="driverLicenseImage" class="img-fluid">
+                <input class="form-control mt-3 w-75" type="file" id="txtDriverLicenseImageUploader">
+            </div>
+
+            <div id="btnGroupManageDriver" style="margin-top: 32px;"
+                 class="col-md-6 col-12 d-flex align-items-center justify-content-center justify-content-md-start gap-3">
+                <button id="btnAddDriver" type="button" class="btn btn-success">Add Driver</button>
+                <button id="btnUpdateDriver" type="button" class="btn btn-primary">Update</button>
+                <button id="btnDeleteDriver" type="button" class="btn btn-danger">Delete</button>
+                <button id="btnClearDriverFields" type="button" class="btn btn-secondary">Clear</button>
+            </div>
+        </form>
+    </section>
+
+    <section class="row justify-content-center">
+        <!--Manage Bookings Table-->
+        <section class="d-flex flex-column h-50 col-11 col-xl-12 bg-white shadow-lg align-items-center
+        pt-3 mt-4">
+            <h3 class="text-center bg-primary p-2 text-light rounded-3 col-12 fs-4">Manage Driver</h3>
+            <div class="row h-60 col-12 col-lg-12 rounded-2 table-responsive">
+                <table id="tblManageDriver" class="table table-striped table-hover rounded-5 mb-5 table-bordered">
+                    <thead class="text-white green-hd" style="background: #17377f;">
+                    <tr>
+                        <th>Driver ID</th>
+                        <th>Driver Name</th>
+                        <th>Username</th>
+                        <th>Password</th>
+                        <th>Address</th>
+                        <th>Contact Number</th>
+                        <th>Driver NIC</th>
+                        <th>Driving License No</th>
+                        <th>Availability Type</th>
+                    </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </section>
+    </section>
+</main>
+
+<!--View Driver Schedule Section-->
+<main id="viewDriverSchedule_section" class="admin-sections">
+    <section class="row justify-content-start">
+        <div class="col-xl-9 col-lg-10 col-md-12 col-12 justify-content-center">
+            <h1 id="viewDriverScheduleHeader">View Driver Schedule <i class="fa-solid fa-list-check"></i></h1>
+        </div>
+    </section>
+
+    <section class="row justify-content-center mt-4">
+        <div class="form-group col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-12 mb-3 align-self-end">
+            <select id="cmbSelectDriver_viewDriverScheduleSection" style="font-size: 15px;" class="form-select"
+                    aria-label="Default select example">
+                <option selected disabled>Select Driver</option>
+                <option>All Drivers</option>
+            </select>
+        </div>
+
+        <div class="form-group col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-12 mb-3">
+            <label for="fromDateTimeDuration" class="form-label">From</label>
+            <input class="form-control" id="fromDateTimeDuration" type="datetime-local">
+        </div>
+
+        <div class="form-group col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-12 mb-3">
+            <label for="toDateTimeDuration" class="form-label">To</label>
+            <input class="form-control" id="toDateTimeDuration" type="datetime-local">
+        </div>
+
+        <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-10 text-center text-sm-center text-md-center text-lg-start text-xl-start justify-content-center align-self-center"
+             style="margin-top: 14px;">
+            <button id="btnSearchDriverSchedule" type="button" class="btn btn-primary" style="margin-right: 13px;">
+                Search Schedule
+            </button>
+            <button id="btnClearDriverSchedule" type="button" class="btn btn-secondary">Clear</button>
+        </div>
+    </section>
+
+    <section class="row justify-content-center">
+        <!--View Driver Schedule Table-->
+        <section class="d-flex flex-column h-50 col-11 col-xl-12 bg-white shadow-lg align-items-center
+        pt-3 mt-4" style="border-radius: 15px;">
+            <h3 class="text-center bg-primary p-2 text-light rounded-3 col-12 fs-4">View Driver Schedule</h3>
+            <div class="row h-60 col-12 col-lg-12 rounded-2 table-responsive">
+                <table id="tblViewDriverSchedule"
+                       class="table table-striped table-hover mb-5 table-bordered shadow bg-white">
+                    <thead class="text-white green-hd" style="background: #17377f;">
+                    <tr>
+                        <th>Driver ID</th>
+                        <th>Driver Name</th>
+                        <th>Driver NIC</th>
+                        <th>Rent ID</th>
+                        <th>Rent Start Date</th>
+                        <th>Rent Start Time</th>
+                        <th>Rent End Date</th>
+                        <th>Rent End Time</th>
+                        <th>Location</th>
+                        <th>Car ID</th>
+                    </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </section>
+    </section>
+</main>
+
+<!--View Car Schedule Section-->
+<main id="viewCarSchedule_section" class="admin-sections">
+    <section class="row justify-content-start">
+        <div class="col-xl-9 col-lg-10 col-md-12 col-12 justify-content-center">
+            <h1 id="viewCarScheduleHeader">View Car Schedule <i class="fa-solid fa-list-check"></i></h1>
+        </div>
+    </section>
+
+    <section class="row justify-content-center mt-4">
+        <div class="form-group col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-12 mb-3">
+            <label for="txtDate" class="form-label">Date</label>
+            <input class="form-control" id="txtDate" type="date">
+        </div>
+
+        <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-10 text-center text-sm-center text-md-center text-lg-start text-xl-center justify-content-center align-self-center"
+             style="margin-top: 14px;">
+            <button id="btnSearchCarSchedule" type="button" class="btn btn-primary">Search Schedule</button>
+        </div>
+
+        <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-4 col-10 text-center text-sm-center text-md-center text-lg-start text-xl-start justify-content-center align-self-center"
+             style="margin-top: 14px;">
+            <button id="btnClearDate" type="button" class="btn btn-secondary">Clear</button>
+        </div>
+    </section>
+
+    <section class="row justify-content-center">
+        <!--View Driver Schedule Table-->
+        <section class="d-flex flex-column h-50 col-11 col-xl-12 bg-white shadow-lg align-items-center
+        pt-3 mt-4" style="border-radius: 15px;">
+            <h3 class="text-center bg-primary p-2 text-light rounded-3 col-12 fs-4">Rented Cars Schedule</h3>
+            <div class="row h-60 col-12 col-lg-12 rounded-2 table-responsive">
+                <table id="tblViewRentedCarSchedule"
+                       class="table table-striped table-hover mb-5 table-bordered shadow bg-white">
+                    <thead class="text-white green-hd" style="background: #17377f;">
+                    <tr>
+                        <th>Car ID</th>
+                        <th>Car Reg No</th>
+                        <th>Car Type</th>
+                        <th>Rent ID</th>
+                        <th>Customer ID</th>
+                        <th>Customer Name</th>
+                        <th>Driver ID</th>
+                        <th>Driver Name</th>
+                        <th>Rent Start Date</th>
+                        <th>Rent End Date</th>
+                        <th>Location</th>
+                    </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </section>
+    </section>
+
+    <section class="row justify-content-center">
+        <!--View Driver Schedule Table-->
+        <section class="d-flex flex-column h-50 col-11 col-xl-12 bg-white shadow-lg align-items-center
+        pt-3 mt-4" style="border-radius: 15px;">
+            <h3 class="text-center bg-primary p-2 text-light rounded-3 col-12 fs-4">Available Cars Schedule</h3>
+            <div class="row h-60 col-12 col-lg-12 rounded-2 table-responsive">
+                <table id="tblViewAvailableCarSchedule"
+                       class="table table-striped table-hover mb-5 table-bordered shadow bg-white">
+                    <thead class="text-white green-hd" style="background: #17377f;">
+                    <tr>
+                        <th>Car ID</th>
+                        <th>Car Reg No</th>
+                        <th>Brand</th>
+                        <th>Car Type</th>
+                        <th>No Of Passengers</th>
+                        <th>Transmission Type</th>
+                        <th>Fuel Type</th>
+                    </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </section>
+    </section>
+</main>
+
+<!--View Admin Profile Section-->
+<main id="adminProfile_section" class="admin-sections">
+    <section class="row justify-content-start">
+        <div class="col-xl-9 col-lg-10 col-md-12 col-12 justify-content-center">
+            <h1 id="adminProfileHeader">Admin Profile <i class="fa-solid fa-list-check"></i></h1>
+        </div>
+    </section>
+
+    <section class="row justify-content-center px-3">
+        <form class="row g-3 shadow bg-white" style="background-color: #fafaff; border-radius: 10px;">
+            <div class="col-md-3">
+                <label for="txtAdminNic" class="form-label">Admin NIC</label>
+                <input type="text" class="form-control" id="txtAdminNic">
+            </div>
+
+            <div class="col-md-3">
+                <label for="txtAdminName" class="form-label">Name</label>
+                <input type="text" class="form-control" id="txtAdminName">
+            </div>
+
+            <div class="col-md-3">
+                <label for="txtAdminUsername" class="form-label">Username</label>
+                <input type="text" class="form-control" id="txtAdminUsername">
+            </div>
+
+            <div class="col-md-3">
+                <label for="txtAdminPassword" class="form-label">Password</label>
+                <input type="text" class="form-control" id="txtAdminPassword">
+            </div>
+
+            <div class="col-md-4">
+                <label for="txtAdminEmail" class="form-label">Email</label>
+                <input type="text" class="form-control" id="txtAdminEmail">
+            </div>
+
+            <div class="col-md-4">
+                <label for="txtAdminContactNumber" class="form-label">Contact Number</label>
+                <input type="text" class="form-control" id="txtAdminContactNumber">
+            </div>
+
+            <div style="margin-top: 33px; margin-bottom: 33px;" class="col-12">
+                <button type="submit" class="btn btn-primary">Update Profile</button>
+            </div>
+        </form>
+    </section>
+</main>
+
+<!--View Rent Details Section-->
+<main id="manageRentDetails_section" class="admin-sections">
+    <section class="row justify-content-start">
+        <div class="col-xl-9 col-lg-10 col-md-12 col-12 justify-content-center">
+            <h1 id="rentDetailsHeader">Manage Rent Details <i class="fa-solid fa-list-check"></i></h1>
+        </div>
+    </section>
+
+    <section class="row justify-content-center mt-4">
+        <div class="form-group col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-12 mb-3">
+            <label for="txtSearchRentDetails" class="form-label">Rent ID</label>
+            <input class="form-control" id="txtSearchRentDetails" type="search">
+        </div>
+
+        <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-10 text-center text-sm-center text-md-center text-lg-start text-xl-start justify-content-center align-self-center"
+             style="margin-top: 14px;">
+            <button id="btnSearchRentDetails" type="button" class="btn btn-primary">Search Details</button>
+        </div>
+    </section>
+
+    <section class="row justify-content-center px-3">
+        <form class="row g-3">
+            <div class="col-md-3 col-lg-4 col-xl-3 col-md-4">
+                <label for="txtRentID_rentDetails" class="form-label">Rent ID</label>
+                <input type="text" class="form-control" id="txtRentID_rentDetails">
+            </div>
+
+            <div class="col-md-3 col-lg-4 col-xl-3 col-md-4">
+                <label for="txtCarID_rentDetails" class="form-label">Car ID</label>
+                <input type="text" class="form-control" id="txtCarID_rentDetails">
+            </div>
+
+            <div class="col-md-3 col-lg-4 col-xl-3 col-md-4">
+                <label for="txtDriverID_rentDetails" class="form-label">Driver ID</label>
+                <input type="text" class="form-control" id="txtDriverID_rentDetails">
+            </div>
+
+            <div class="col-md-3 col-lg-4 col-xl-3 col-md-4">
+                <label for="txtCustomerID_rentDetails" class="form-label">Customer ID</label>
+                <input type="text" class="form-control" id="txtCustomerID_rentDetails">
+            </div>
+
+            <!--====================================-->
+
+            <div class="col-md-3 col-lg-4 col-xl-3 col-md-4">
+                <label for="txtCustomerName_rentDetails" class="form-label">Customer Name</label>
+                <input type="text" class="form-control" id="txtCustomerName_rentDetails">
+            </div>
+
+            <div class="col-md-3 col-lg-4 col-xl-3 col-md-4">
+                <label for="txtCarCost_rentDetails" class="form-label">Car Cost</label>
+                <input type="text" class="form-control" id="txtCarCost_rentDetails">
+            </div>
+
+            <div class="col-md-3 col-lg-4 col-xl-3 col-md-4">
+                <label for="txtDriverCost_rentDetails" class="form-label">Driver Cost</label>
+                <input type="text" class="form-control" id="txtDriverCost_rentDetails">
+            </div>
+
+            <!--====================================-->
+
+            <div class="col-md-3 col-lg-4 col-xl-3 col-md-4">
+                <label for="txtDamageFee_rentDetails" class="form-label">Damage Fee</label>
+                <input type="text" class="form-control" id="txtDamageFee_rentDetails">
+            </div>
+
+            <div class="col-md-3 col-lg-4 col-xl-3 col-md-4">
+                <label for="txtLastServiceMileage_rentDetails" class="form-label">Last Service Mileage</label>
+                <input type="text" class="form-control" id="txtLastServiceMileage_rentDetails">
+            </div>
+
+            <div class="col-md-3 col-lg-4 col-xl-3 col-md-4">
+                <label for="txtDistanceMileage_rentDetails" class="form-label">Distance Mileage</label>
+                <input type="text" class="form-control" id="txtDistanceMileage_rentDetails">
+            </div>
+
+            <div class="col-md-3 col-lg-4 col-xl-3 col-md-4">
+                <label for="txtProcess_rentDetails" class="form-label">Process</label>
+                <select id="txtProcess_rentDetails" class="form-select" aria-label="Default select example">
+                    <option selected disabled>Select Rent Process Type</option>
+                    <option>Pending</option>
+                    <option>Accepted</option>
+                    <option>Ongoing</option>
+                    <option>Finished</option>
+                </select>
+            </div>
+
+            <!--====================================-->
+
+            <div id="btnGroupManageRentDetails" style="margin-top: 32px; gap: 15px;"
+                 class="col-12 d-inline-flex justify-content-md-end justify-content-center">
+                <button id="btnUpdate_RentDetailsSection" type="button" class="btn btn-primary">Update Details</button>
+                <button id="btnClear_RentDetailsSection" type="button" class="btn btn-secondary">Clear</button>
+            </div>
+        </form>
+    </section>
+
+    <section class="row justify-content-center">
+        <!--View Driver Schedule Table-->
+        <section class="d-flex flex-column h-50 col-11 col-xl-12 bg-white shadow-lg align-items-center
+        pt-3 mt-4" style="border-radius: 15px;">
+            <h3 class="text-center bg-primary p-2 text-light rounded-3 col-12 fs-4">Rent Details</h3>
+            <div class="row h-60 col-12 col-lg-12 rounded-2 table-responsive">
+                <table id="tblManageRentDetails"
+                       class="table table-striped table-hover mb-5 table-bordered shadow bg-white">
+                    <thead class="text-white green-hd" style="background: #17377f;">
+                    <tr>
+                        <th>Rent ID</th>
+                        <th>Car ID</th>
+                        <th>Driver ID</th>
+                        <th>Customer ID</th>
+                        <th>Customer Name</th>
+                        <th>Car Cost</th>
+                        <th>Driver Cost</th>
+                        <th>Damage Fee</th>
+                        <th>Last Service Mileage(Km)</th>
+                        <th>Distance Mileage(Km)</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </section>
+    </section>
+</main>
+
+<!--Manage Payments Section-->
+<main id="managePayment_section" class="admin-sections">
+    <section class="row justify-content-start">
+        <div class="col-xl-9 col-lg-10 col-md-12 col-12 justify-content-center">
+            <h1 id="managePaymentsHeader">Manage Payments <i class="fa-solid fa-list-check"></i></h1>
+        </div>
+    </section>
+
+    <section class="row justify-content-center mt-4">
+        <div class="form-group col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-12 mb-3">
+            <label for="txtSearchRentDetails" class="form-label">Rent ID</label>
+            <input class="form-control" id="txtSearchRent" type="text">
+        </div>
+
+        <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-10 text-center text-sm-center text-md-center text-lg-start text-xl-start justify-content-center align-self-center"
+             style="margin-top: 14px;">
+            <button id="btnSearchRent" type="button" class="btn btn-primary">Search Rent</button>
+        </div>
+    </section>
+
+    <section class="row justify-content-center px-3">
+        <form class="row g-3">
+            <div class="col-md-3 col-lg-4 col-xl-3 col-md-4">
+                <label for="txtPaymentID_managePayments" class="form-label">Payment ID</label>
+                <input disabled type="text" class="form-control" id="txtPaymentID_managePayments">
+            </div>
+
+            <div class="col-md-3 col-lg-4 col-xl-3 col-md-4">
+                <label for="txtRentID_managePayments" class="form-label">Rent ID</label>
+                <input type="text" class="form-control" id="txtRentID_managePayments">
+            </div>
+
+            <div class="col-md-3 col-lg-4 col-xl-3 col-md-4">
+                <label for="txtPaymentType_rentDetails" class="form-label">Payment Type</label>
+                <input type="text" class="form-control" id="txtPaymentType_rentDetails">
+            </div>
+
+            <div class="col-md-3 col-lg-4 col-xl-3 col-md-4">
+                <label for="txtPaymentDate_rentDetails" class="form-label">Payment Date</label>
+                <input type="date" class="form-control" id="txtPaymentDate_rentDetails">
+            </div>
+
+            <div class="col-md-3 col-lg-4 col-xl-3 col-md-4">
+                <label for="txtPaymentTime_rentDetails" class="form-label">Payment Time</label>
+                <input type="time" class="form-control" id="txtPaymentTime_rentDetails">
+            </div>
+
+            <!--====================================-->
+
+            <div class="col-md-3 col-lg-4 col-xl-3 col-md-4">
+                <label for="txtAmount_rentDetails" class="form-label">Amount</label>
+                <input type="text" class="form-control" id="txtAmount_rentDetails">
+            </div>
+
+            <div class="col-md-3 col-lg-4 col-xl-3 col-md-4">
+                <label for="txtCash_rentDetails" class="form-label">Cash</label>
+                <input type="text" class="form-control" id="txtCash_rentDetails">
+            </div>
+
+            <div class="col-md-3 col-lg-4 col-xl-3 col-md-4">
+                <label for="txtBalance_rentDetails" class="form-label">Balance</label>
+                <input type="text" class="form-control" id="txtBalance_rentDetails">
+            </div>
+
+            <!--====================================-->
+
+            <div id="btnGroupManagePayments" style="margin-top: 32px; gap: 15px;"
+                 class="col-12 d-inline-flex justify-content-md-end justify-content-center">
+                <button id="btnSave_ManagePaymentsSection" style="padding-left: 25px;padding-right: 25px;" type="button"
+                        class="btn btn-success">Save
+                </button>
+                <button id="btnUpdate_ManagePaymentsSection" type="button" class="btn btn-primary">Update</button>
+                <button id="btnClear_ManagePaymentsSection" type="button" class="btn btn-secondary">Clear</button>
+            </div>
+        </form>
+    </section>
+
+    <section class="row justify-content-center">
+        <!--View Driver Schedule Table-->
+        <section class="d-flex flex-column h-50 col-11 col-xl-12 bg-white shadow-lg align-items-center
+        pt-3 mt-4" style="border-radius: 15px;">
+            <h3 class="text-center bg-primary p-2 text-light rounded-3 col-12 fs-4">Manage Payments</h3>
+            <div class="row h-60 col-12 col-lg-12 rounded-2 table-responsive">
+                <table id="tblManagePayments"
+                       class="table table-striped table-hover mb-5 table-bordered shadow bg-white">
+                    <thead class="text-white green-hd" style="background: #17377f;">
+                    <tr>
+                        <th>Payment ID</th>
+                        <th>Rent ID</th>
+                        <th>Payment Type</th>
+                        <th>Payment Date</th>
+                        <th>Payment Time</th>
+                        <th>Amount (LKR)</th>
+                        <th>Cash (LKR)</th>
+                        <th>Balance (LKR)</th>
+                    </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </section>
+    </section>
+</main>
+
+<script src="../assets/jquery/jquery-3.6.1.min.js"></script>
+<script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+<script src="../controller/AdminController.js"></script>
+</body>
+</html>

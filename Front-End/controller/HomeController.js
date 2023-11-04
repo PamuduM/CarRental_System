@@ -1057,3 +1057,13 @@ function loadAllCarsByCarPrice(price) {
     });
 }
 
+$('#txtEnterPrice').on('keyup', function () {
+    if ($('#txtEnterPrice').val() != '') {
+        var carPrice = $('#txtEnterPrice').val();
+        loadAllCarsByCarPrice(carPrice);
+    } else {
+        for (let i = 0; i < $("#carsCollection > .carDetails_section").children().length; i++) {
+            $("#carsCollection > .carDetails_section").children(`:eq(${i})`).css('display', 'none');
+        }
+    }
+});
